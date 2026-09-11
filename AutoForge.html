@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoForge ML: Building a Sovereign, Local-First AutoML & Governance Engine</title>
+    <!-- Modern Web Fonts & Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            500: '#F25C05',
+                            600: '#ea580c',
+                            700: '#c2410c',
+                        },
+                        dark: {
+                            900: '#0B0F17',
+                            800: '#111827',
+                            700: '#1F2937'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4, .font-display { font-family: 'Space Grotesk', sans-serif; }
+        code, pre { font-family: 'Fira Code', monospace; }
+        .prose p { margin-bottom: 1.25rem; line-height: 1.8; }
+        .toc-link:hover { color: #F25C05; transform: translateX(4px); }
+    </style>
+</head>
+<body class="bg-[#F8F9FA] text-slate-800 antialiased selection:bg-[#F25C05] selection:text-white">
+
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200">
+        <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <span class="w-3.5 h-3.5 rounded-full bg-[#F25C05] animate-pulse"></span>
+                <span class="font-display font-bold text-xl tracking-tight text-slate-950">
+                    AutoForge <span class="text-[#F25C05]">ML</span>
+                </span>
+                <span class="text-xs font-mono font-semibold px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 border border-slate-200 ml-2">v2.4 LTS</span>
+            </div>
+            <div class="flex items-center gap-4 text-sm font-medium">
+                <a href="#pipeline-workflow" class="text-slate-600 hover:text-[#F25C05] transition-colors">Pipeline</a>
+                <a href="#diagnostics" class="text-slate-600 hover:text-[#F25C05] transition-colors">Diagnostics</a>
+                <a href="#models" class="text-slate-600 hover:text-[#F25C05] transition-colors">Model Arena</a>
+                <a href="#governance" class="text-slate-600 hover:text-[#F25C05] transition-colors">Governance</a>
+                <a href="#mlops" class="text-slate-600 hover:text-[#F25C05] transition-colors">MLOps Context</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Header -->
+    <section class="relative bg-gradient-to-b from-white via-[#F8F9FA] to-slate-100/60 pt-16 pb-20 border-b border-slate-200">
+        <div class="max-w-4xl mx-auto px-6 text-center space-y-6">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-50 border border-orange-200 text-[#F25C05] text-xs font-bold tracking-wide uppercase">
+                Enterprise MLOps & Sovereign Machine Learning
+            </div>
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-950 leading-[1.15]">
+                Beyond the Model: Engineering a Local-First, Governed <span class="text-[#F25C05]">AutoML Pipeline</span>
+            </h1>
+            <p class="text-lg sm:text-xl text-slate-600 leading-relaxed font-normal max-w-3xl mx-auto">
+                An end-to-end framework for tabular machine learning featuring automated schema hygiene, non-linear exploratory screening, dynamic cross-validation, and an immutable governance audit ledger.
+            </p>
+            <div class="flex items-center justify-center gap-6 pt-4 text-xs font-mono text-slate-500 border-t border-slate-200/80 max-w-md mx-auto">
+                <span>⏱️ 10 min read</span>
+                <span>•</span>
+                <span>🛠️ FastAPI + React</span>
+                <span>•</span>
+                <span>🔒 Zero Data Egress</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Layout -->
+    <main class="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 lg:grid-cols-12 gap-12">
+
+        <!-- Sidebar / Table of Contents -->
+        <aside class="hidden lg:block lg:col-span-3">
+            <div class="sticky top-24 space-y-4 bg-white p-5 rounded-2xl border border-slate-200 shadow-sm text-sm">
+                <p class="font-display font-bold text-slate-900 uppercase text-xs tracking-wider">Table of Contents</p>
+                <nav class="space-y-2.5 font-medium text-slate-600 text-xs">
+                    <a href="#introduction" class="block toc-link transition-transform">1. The Problem Statement</a>
+                    <a href="#pipeline-workflow" class="block toc-link transition-transform">2. End-to-End Architecture</a>
+                    <a href="#diagnostics" class="block toc-link transition-transform">3. Exploratory Diagnostics</a>
+                    <a href="#feature-engineering" class="block toc-link transition-transform">4. Feature Synthesis</a>
+                    <a href="#clustering" class="block toc-link transition-transform">5. Unsupervised Structure</a>
+                    <a href="#models" class="block toc-link transition-transform">6. AutoML Arena & Dynamic CV</a>
+                    <a href="#governance" class="block toc-link transition-transform">7. Governance & Audit Ledger</a>
+                    <a href="#mlops" class="block toc-link transition-transform">8. MLOps Alignment & Future</a>
+                </nav>
+            </div>
+        </aside>
+
+        <!-- Article Core -->
+        <article class="lg:col-span-9 prose prose-slate max-w-none text-slate-700 leading-relaxed text-base">
+
+            <!-- Section 1: Problem Statement -->
+            <section id="introduction" class="space-y-4 mb-16">
+                <h2 class="text-3xl font-bold tracking-tight text-slate-950 font-display border-b border-slate-200 pb-3">
+                    1. The Problem Statement: The Lifecycle Deficit
+                </h2>
+                <p>
+                    In typical applied machine learning coursework and prototype development, workflows are overwhelmingly <strong>algorithm-centric</strong>[cite: 1]: a prepared dataset is loaded, missing values are hastily imputed, a model is trained in a notebook, and a single validation metric is declared a success[cite: 1].
+                </p>
+                <p>
+                    However, as formalized in modern enterprise MLOps frameworks, an isolated algorithm does not constitute an operational system[cite: 1]. Organizations face critical challenges: data privacy risks from sending proprietary records to cloud APIs, a pervasive lack of regulatory lineage tracking, and high model evaluation variance resulting from rigid, static splits[cite: 1].
+                </p>
+                <p>
+                    <strong>AutoForge ML</strong> addresses this by establishing a sovereign, local-first workbench that unifies data hygiene, non-linear exploratory screening, mathematical feature generation, unsupervised clustering, multi-family AutoML benchmarking, and immutable governance tracking inside a single interface[cite: 1].
+                </p>
+            </section>
+
+            <!-- Section 2: End-to-End System Architecture -->
+            <section id="pipeline-workflow" class="space-y-4 mb-16">
+                <h2 class="text-3xl font-bold tracking-tight text-slate-950 font-display border-b border-slate-200 pb-3">
+                    2. End-to-End System Architecture
+                </h2>
+                <p>
+                    AutoForge ML operates on a decoupled client-server architecture: a <strong>FastAPI Python backend</strong> manages mathematical operations, scikit-learn training pipelines, and automated reporting, while a <strong>React frontend</strong> provides real-time state visualization.
+                </p>
+                
+                <div class="my-8 bg-slate-900 text-white p-6 rounded-2xl shadow-xl not-prose overflow-x-auto">
+                    <p class="text-xs font-mono text-[#F25C05] uppercase tracking-wider mb-4 font-bold">AutoForge ML Unified System Pipeline</p>
+                    <div class="flex items-center justify-between min-w-[650px] text-xs font-mono text-center gap-2">
+                        <div class="flex-1 p-3 rounded-lg bg-slate-800 border border-slate-700">
+                            <span class="text-slate-400 block mb-1">1. Ingestion</span>
+                            <strong class="text-white">Generic Tabular Data</strong>
+                            <span class="text-[10px] text-emerald-400 block mt-1">Multi-Encoding Parser</span>
+                        </div>
+                        <span class="text-slate-500 font-bold">&rarr;</span>
+                        <div class="flex-1 p-3 rounded-lg bg-slate-800 border border-slate-700">
+                            <span class="text-slate-400 block mb-1">2. Hygiene</span>
+                            <strong class="text-white">Impute & Prune</strong>
+                            <span class="text-[10px] text-amber-400 block mt-1">ID Pruning & Median Impute</span>
+                        </div>
+                        <span class="text-slate-500 font-bold">&rarr;</span>
+                        <div class="flex-1 p-3 rounded-lg bg-slate-800 border border-slate-700">
+                            <span class="text-slate-400 block mb-1">3. Diagnostics</span>
+                            <strong class="text-white">Non-Linear EDA</strong>
+                            <span class="text-[10px] text-[#F25C05] block mt-1">LOWESS Curves</span>
+                        </div>
+                        <span class="text-slate-500 font-bold">&rarr;</span>
+                        <div class="flex-1 p-3 rounded-lg bg-slate-800 border border-slate-700">
+                            <span class="text-slate-400 block mb-1">4. AutoML Arena</span>
+                            <strong class="text-white">8 Model Families</strong>
+                            <span class="text-[10px] text-cyan-400 block mt-1">Dynamic CV Folds</span>
+                        </div>
+                        <span class="text-slate-500 font-bold">&rarr;</span>
+                        <div class="flex-1 p-3 rounded-lg bg-slate-800 border border-slate-700 border-l-2 border-l-[#F25C05]">
+                            <span class="text-slate-400 block mb-1">5. Governance</span>
+                            <strong class="text-white">Audit Ledger</strong>
+                            <span class="text-[10px] text-purple-400 block mt-1">Immutable Sign-Off</span>
+                        </div>
+                    </div>
+                </div>
+
+                <p>
+                    Data entering the pipeline undergoes automatic hygiene: empty columns are dropped, missing numeric cells receive median imputation, and categorical columns receive mode substitution. High-cardinality surrogate keys and identifier columns are detected and excluded to eliminate data leakage[cite: 1].
+                </p>
+            </section>
+
+            <!-- Section 3: Exploratory Diagnostics (WITH IMAGE 1) -->
+            <section id="diagnostics" class="space-y-4 mb-16">
+                <h2 class="text-3xl font-bold tracking-tight text-slate-950 font-display border-b border-slate-200 pb-3">
+                    3. Exploratory Diagnostics & Non-Linear Target Screening
+                </h2>
+
+                <!-- Image 1 -->
+                <div class="my-6 bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-lg not-prose">
+                    <div class="p-3 bg-slate-100 border-b border-slate-200 flex items-center justify-between text-xs font-mono text-slate-600">
+                        <span class="flex items-center gap-2">
+                            <span class="w-2.5 h-2.5 rounded-full bg-red-400"></span>
+                            <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+                            <span class="font-bold text-slate-800 ml-2">Figure 1: Exploratory Diagnostics Dashboard</span>
+                        </span>
+                        <span class="text-slate-500 font-semibold">images/media/img_01_diagnostics_eda.png</span>
+                    </div>
+                    <img src="images/media/img_01_diagnostics_eda.png" alt="AutoForge ML Diagnostics Dashboard" class="w-full h-auto object-cover bg-slate-50">
+                    <div class="p-3.5 bg-slate-50 border-t border-slate-200 text-xs text-slate-600">
+                        <strong>Figure 1:</strong> Dynamic target response curve displaying non-linear feature relationships alongside linear correlation rankings.
+                    </div>
+                </div>
+
+                <p>
+                    Standard EDA tools frequently rely exclusively on linear Pearson correlation[cite: 1]. While effective for straight lines, correlation fails when evaluating non-monotonic curves or multi-class categorical features[cite: 1].
+                </p>
+                <p>
+                    AutoForge ML combines linear ranking with dynamic aggregation and non-linear LOWESS curve screening. Continuous features are grouped across quantiles to expose parabolic or plateau relationships, while categorical attributes are evaluated against mean target responses across all classes without sample truncation.
+                </p>
+            </section>
+
+            <!-- Section 4: Feature Synthesis Mechanics -->
+            <section id="feature-engineering" class="space-y-4 mb-16">
+                <h2 class="text-3xl font-bold tracking-tight text-slate-950 font-display border-b border-slate-200 pb-3">
+                    4. Human-in-the-Loop Feature Synthesis
+                </h2>
+                <p>
+                    Feature engineering balances automated discovery with analytical transparency. Rather than operating as an uninterpretable black box, the system screens and recommends candidate transformations:
+                </p>
+                <ul>
+                    <li><strong>Statistical Skew Relief:</strong> Detects right-skewed positive features and proposes log transforms (<code>np.log1p</code>) to stabilize gradient descent and linear estimators.</li>
+                    <li><strong>Deterministic Interaction Ratios:</strong> Calculates pairwise ratios ($X_1 / X_2$) across continuous features to capture rate-of-change relationships.</li>
+                    <li><strong>Additive Injection:</strong> When accepted, the engineered variable is appended to the DataFrame without overwriting original columns, and its exact mathematical lineage is recorded for governance.</li>
+                </ul>
+            </section>
+
+            <!-- Section 5: Clustering & PCA -->
+            <section id="clustering" class="space-y-4 mb-16">
+                <h2 class="text-3xl font-bold tracking-tight text-slate-950 font-display border-b border-slate-200 pb-3">
+                    5. Unsupervised Structure Discovery: Silhouette & 2D PCA
+                </h2>
+                <p>
+                    Before fitting predictive models, discovering natural groupings provides valuable structural perspective[cite: 1]. The system scales the feature matrix using <code>StandardScaler</code>, executes automated Silhouette score sweeps across cluster counts ($k = 2 \dots 8$), selects the optimal partition, and projects high-dimensional data onto a 2D Principal Component Analysis (PCA) plane for immediate visual verification.
+                </p>
+            </section>
+
+            <!-- Section 6: Model Arena & Dynamic CV (WITH IMAGE 2) -->
+            <section id="models" class="space-y-4 mb-16">
+                <h2 class="text-3xl font-bold tracking-tight text-slate-950 font-display border-b border-slate-200 pb-3">
+                    6. The AutoML Arena & Dynamic Cross-Validation
+                </h2>
+
+                <!-- Image 2 -->
+                <div class="my-6 bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-lg not-prose">
+                    <div class="p-3 bg-slate-100 border-b border-slate-200 flex items-center justify-between text-xs font-mono text-slate-600">
+                        <span class="flex items-center gap-2">
+                            <span class="w-2.5 h-2.5 rounded-full bg-red-400"></span>
+                            <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+                            <span class="font-bold text-slate-800 ml-2">Figure 2: Multi-Model Benchmark Arena & Leaderboard</span>
+                        </span>
+                        <span class="text-slate-500 font-semibold">images/media/img_02_automl_arena.png</span>
+                    </div>
+                    <img src="images/media/img_02_automl_arena.png" alt="AutoForge ML Model Arena" class="w-full h-auto object-cover bg-slate-50">
+                    <div class="p-3.5 bg-slate-50 border-t border-slate-200 text-xs text-slate-600">
+                        <strong>Figure 2:</strong> Multi-model benchmark arena comparing algorithms across holdout evaluation metrics and dynamic cross-validation folds.
+                    </div>
+                </div>
+
+                <p>
+                    AutoForge ML automatically routes tasks to regression or classification based on target cardinality. It benchmarks 8 distinct architectures simultaneously across multiple algorithm families:
+                </p>
+                <ul>
+                    <li><strong>Linear Baseline:</strong> Ridge Regression / Logistic Regression with $L_2$ regularization.</li>
+                    <li><strong>Kernel Machines:</strong> Support Vector Machines (SVR / SVC) using Radial Basis Function kernels.</li>
+                    <li><strong>Neural Networks:</strong> Multi-Layer Perceptron (MLP) with $128 \times 64$ hidden layers, ReLU activation, and early stopping.</li>
+                    <li><strong>Bagging Ensembles:</strong> Random Forest and Extra Trees with randomized split thresholds.</li>
+                    <li><strong>Boosting Ensembles:</strong> Gradient Boosting and AdaBoost focusing sequentially on residual errors.</li>
+                    <li><strong>Meta-Ensemble:</strong> A Voting Regressor/Classifier combining linear, bagging, and boosting outputs to cancel individual model biases.</li>
+                </ul>
+                
+                <h3 class="text-xl font-bold text-slate-900 font-display pt-2">Dynamic Cross-Validation Allocation</h3>
+                <p>
+                    Rather than hardcoding a single static fold count, the pipeline adjusts cross-validation folds based on sample size:
+                </p>
+                <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl text-xs font-mono space-y-2 my-2 not-prose">
+                    <p>• <strong>Small Datasets (&lt; 1,000 rows):</strong> Up to 10 Folds (leaves 90% data for training, preventing starvation)</p>
+                    <p>• <strong>Medium Datasets (1,000 – 50,000 rows):</strong> 5 Folds (optimal balance of accuracy and runtime)</p>
+                    <p>• <strong>Large Datasets (&gt; 50,000 rows):</strong> 3 Folds (efficient convergence on large sample sizes)</p>
+                </div>
+            </section>
+
+            <!-- Section 7: Governance & Lineage Ledger (WITH IMAGE 3) -->
+            <section id="governance" class="space-y-4 mb-16">
+                <h2 class="text-3xl font-bold tracking-tight text-slate-950 font-display border-b border-slate-200 pb-3">
+                    7. Model Governance & The Lineage Ledger
+                </h2>
+
+                <!-- Image 3 -->
+                <div class="my-6 bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-lg not-prose">
+                    <div class="p-3 bg-slate-100 border-b border-slate-200 flex items-center justify-between text-xs font-mono text-slate-600">
+                        <span class="flex items-center gap-2">
+                            <span class="w-2.5 h-2.5 rounded-full bg-red-400"></span>
+                            <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+                            <span class="font-bold text-slate-800 ml-2">Figure 3: Immutable Governance & Lineage Ledger</span>
+                        </span>
+                        <span class="text-slate-500 font-semibold">images/media/img_03_governance_lineage.png</span>
+                    </div>
+                    <img src="images/media/img_03_governance_lineage.png" alt="AutoForge ML Governance Ledger" class="w-full h-auto object-cover bg-slate-50">
+                    <div class="p-3.5 bg-slate-50 border-t border-slate-200 text-xs text-slate-600">
+                        <strong>Figure 3:</strong> Audit trail recording data lineage, applied feature formulas, hyperparameters, and human approval sign-off states before deployment[cite: 1].
+                    </div>
+                </div>
+
+                <p>
+                    Chapters 7 and 10 of the enterprise MLOps framework emphasize that <em>"An ML pipeline performs activities; an MLOps system also remembers and manages those activities"</em>[cite: 1].
+                </p>
+                <p>
+                    Every completed training cycle automatically appends an audit snapshot to an immutable ledger (<code>model_governance_log.json</code>). Each record captures:
+                </p>
+                <ul class="text-sm">
+                    <li><strong>Lineage & Provenance:</strong> Exact dataset identifier, row count, target variable, and applied feature transformations.</li>
+                    <li><strong>Reproducible State:</strong> Full algorithm hyperparameter dictionaries, random seeds, and holdout splits.</li>
+                    <li><strong>Human-in-the-Loop Sign-Off:</strong> Models default to <code>PENDING</code> status and require human review and explicit status transition (<code>APPROVED</code> / <code>REJECTED</code>) before promotion.</li>
+                </ul>
+            </section>
+
+            <!-- Section 8: MLOps Alignment & Conclusion -->
+            <section id="mlops" class="space-y-4 mb-16">
+                <h2 class="text-3xl font-bold tracking-tight text-slate-950 font-display border-b border-slate-200 pb-3">
+                    8. Enterprise MLOps Alignment & Future Roadmap
+                </h2>
+                <p>
+                    Benchmarking AutoForge ML against the 12 chapters of the enterprise MLOps framework confirms how lifecycle discipline supersedes raw algorithmic complexity[cite: 1]:
+                </p>
+                
+                <div class="space-y-3 my-6 not-prose text-xs">
+                    <div class="p-4 bg-white border border-slate-200 rounded-xl flex items-start gap-4">
+                        <span class="px-2 py-1 rounded bg-emerald-100 text-emerald-800 font-bold font-mono">COMPLETE</span>
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-sm">Data Hygiene & Quality Checks (Ch. 3–5)</h4>
+                            <p class="text-slate-600 mt-0.5">Automated detection of empty columns, schema validation, and median/mode imputation[cite: 1].</p>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-white border border-slate-200 rounded-xl flex items-start gap-4">
+                        <span class="px-2 py-1 rounded bg-emerald-100 text-emerald-800 font-bold font-mono">COMPLETE</span>
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-sm">Automated Multi-Model Arena & Registry (Ch. 6–7)</h4>
+                            <p class="text-slate-600 mt-0.5">Benchmarking 8 model families with cross-validation and serialized parameter logging[cite: 1].</p>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-white border border-slate-200 rounded-xl flex items-start gap-4">
+                        <span class="px-2 py-1 rounded bg-emerald-100 text-emerald-800 font-bold font-mono">COMPLETE</span>
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-sm">Model Governance & Sign-Off (Ch. 10)</h4>
+                            <p class="text-slate-600 mt-0.5">Immutable audit ledger tracking feature lineage and manual human approval states[cite: 1].</p>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-white border border-slate-200 rounded-xl flex items-start gap-4">
+                        <span class="px-2 py-1 rounded bg-amber-100 text-amber-800 font-bold font-mono">NEXT STAGE</span>
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-sm">Post-Deployment Drift Monitoring (Ch. 9)</h4>
+                            <p class="text-slate-600 mt-0.5">Integrating Kolmogorov-Smirnov (KS) tests to track distribution drift in production[cite: 1].</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-6 bg-gradient-to-r from-orange-50 to-amber-50 border border-orange-200 rounded-2xl not-prose my-6 space-y-2">
+                    <h3 class="font-display font-bold text-slate-900 text-base">Key Architectural Takeaway</h3>
+                    <p class="text-xs text-slate-700 leading-relaxed">
+                        MLOps maturity is not measured by connecting dozens of cloud SaaS tools[cite: 1]. A local-first, containerized system with reliable data hygiene, transparent feature lineage, dynamic cross-validation, and auditable human governance establishes genuine operational reliability while maintaining total data sovereignty[cite: 1].
+                    </p>
+                </div>
+            </section>
+
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-12 text-center text-xs text-slate-500 font-mono">
+        <div class="max-w-4xl mx-auto px-6 space-y-2">
+            <p>AutoForge ML Engineering Whitepaper &bull; Built with FastAPI, scikit-learn & React</p>
+            <p class="text-slate-400">&copy; 2026 Sovereign AI & MLOps Research. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
