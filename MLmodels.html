@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Machine Learning Compendium: From Foundations to Ensembles, Deep Vision &amp; Clustering</title>
+  <title>The Practical Machine Learning Playbook: Intuition, Real-World Use Cases &amp; Pitfalls</title>
   
   <!-- Modern Fonts & Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -11,24 +11,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
   
-  <!-- MathJax Configuration & CDN -->
-  <script>
-    window.MathJax = {
-      tex: {
-        inlineMath: [['$', '$'], ['\\(', '\\)']],
-        displayMath: [['$$', '$$'], ['\\[', '\\]']],
-        processEscapes: true
-      },
-      options: {
-        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      },
-      svg: {
-        fontCache: 'global'
-      }
-    };
-  </script>
-  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
-
   <script>
     tailwind.config = {
       theme: {
@@ -57,22 +39,6 @@
     code, pre { font-family: 'Fira Code', monospace; }
     .prose p { margin-bottom: 1.25rem; line-height: 1.8; }
     .toc-link:hover { color: #F25C05; transform: translateX(4px); }
-
-    /* Prevent Tailwind prose from breaking inline math onto new lines */
-    mjx-container[jax="SVG"] {
-      display: inline-block;
-      margin: 0 !important;
-      padding: 0 !important;
-      vertical-align: -0.15em;
-    }
-    mjx-container[jax="SVG"][display="true"] {
-      display: block !important;
-      margin: 1.25rem 0 !important;
-      text-align: center;
-    }
-    .prose mjx-container {
-      color: inherit;
-    }
   </style>
 </head>
 <body class="bg-white text-slate-800 antialiased selection:bg-[#F25C05] selection:text-white">
@@ -81,20 +47,20 @@
   <section class="relative bg-gradient-to-b from-slate-50 via-white to-slate-50/60 pt-16 pb-20 border-b border-slate-200">
     <div class="max-w-4xl mx-auto px-6 text-center space-y-6">
       <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-50 border border-orange-200 text-[#F25C05] text-xs font-bold tracking-wide uppercase font-mono">
-        Curated Conceptual Progression &bull; Math &bull; Code &bull; Architecture
+        Executive Guide &bull; Everyday Intuition &bull; Practical Scenarios
       </div>
       <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-950 leading-[1.15]">
-        The Machine Learning Compendium: <br><span class="text-[#F25C05]">From First Principles to Deep Vision</span>
+        The Plain-English Machine Learning Guide: <br><span class="text-[#F25C05]">Real Problems, Simple Ideas, No Jargon</span>
       </h1>
       <p class="text-lg sm:text-xl text-slate-600 leading-relaxed font-normal max-w-3xl mx-auto">
-        A structured progression through essential learning paradigms: statistical resampling, generalized linear formulations, variance-reduction forests, sequential boosting, spatial convolution, and geometric clustering.
+        Every major machine learning algorithm explained the way you would describe it over coffee: what real-world job it solves, how it thinks step-by-step, and where it fails.
       </p>
       <div class="flex items-center justify-center gap-6 pt-4 text-xs font-mono text-slate-500 border-t border-slate-200 max-w-md mx-auto">
-        <span>⏱️ 20 min read</span>
+        <span>⏱️ 15 min read</span>
         <span>•</span>
-        <span>📐 Structured Learning Path</span>
+        <span>💼 Real Business Scenarios</span>
         <span>•</span>
-        <span>🚀 Complete Formulation</span>
+        <span>🎯 Zero Academic Jargon</span>
       </div>
     </div>
   </section>
@@ -105,19 +71,19 @@
     <!-- Sidebar / TOC -->
     <aside class="hidden lg:block lg:col-span-3">
       <div class="sticky top-12 space-y-4 bg-[#F8F9FA] p-5 rounded-2xl border border-slate-200 shadow-sm text-sm">
-        <p class="font-display font-bold text-slate-900 uppercase text-xs tracking-wider">Curriculum Path</p>
+        <p class="font-display font-bold text-slate-900 uppercase text-xs tracking-wider">Playbook Navigator</p>
         <nav class="space-y-2 font-medium text-slate-600 text-xs">
-          <a href="#bootstrapping" class="block toc-link transition-transform">1. Bootstrapping Principles</a>
+          <a href="#bootstrapping" class="block toc-link transition-transform">1. Bootstrapping</a>
           <a href="#linear-models" class="block toc-link transition-transform">2. Linear &amp; Logistic Regression</a>
-          <a href="#tree-models" class="block toc-link transition-transform">3. Decision Trees (CART)</a>
-          <a href="#bagging-rf" class="block toc-link transition-transform">4. Bagging &amp; Random Forests</a>
+          <a href="#tree-models" class="block toc-link transition-transform">3. Decision Trees</a>
+          <a href="#bagging-rf" class="block toc-link transition-transform">4. Random Forests</a>
           <a href="#boosting" class="block toc-link transition-transform">5. The Boosting Paradigm</a>
-          <a href="#adaboost" class="block toc-link transition-transform">6. Adaptive Boosting (AdaBoost)</a>
-          <a href="#xgboost" class="block toc-link transition-transform">7. Extreme Gradient Boosting (XGBoost)</a>
-          <a href="#ensembles" class="block toc-link transition-transform">8. Meta-Ensemble Voting &amp; Stacking</a>
-          <a href="#cnn" class="block toc-link transition-transform">9. Convolutional Networks (CNN)</a>
-          <a href="#kmeans" class="block toc-link transition-transform">10. Geometric Clustering ($k$-Means)</a>
-          <a href="#comparison" class="block toc-link transition-transform">11. Architecture Reference Matrix</a>
+          <a href="#adaboost" class="block toc-link transition-transform">6. AdaBoost</a>
+          <a href="#xgboost" class="block toc-link transition-transform">7. XGBoost</a>
+          <a href="#ensembles" class="block toc-link transition-transform">8. Stacking &amp; Voting</a>
+          <a href="#cnn" class="block toc-link transition-transform">9. Computer Vision (CNN)</a>
+          <a href="#kmeans" class="block toc-link transition-transform">10. Customer Clustering (k-Means)</a>
+          <a href="#comparison" class="block toc-link transition-transform">11. Decision Cheat-Sheet</a>
         </nav>
       </div>
     </aside>
@@ -125,195 +91,230 @@
     <!-- Article Content -->
     <article class="lg:col-span-9 prose prose-slate max-w-none text-slate-700 leading-relaxed text-base">
 
-      <!-- SECTION 1: BOOTSTRAPPING PRINCIPLES -->
+      <!-- SECTION 1: BOOTSTRAPPING -->
       <section id="bootstrapping" class="space-y-4 mb-20">
         <h2 class="text-3xl font-bold tracking-tight text-slate-950 font-display border-b border-slate-200 pb-3">
-          1. Bootstrapping Principles (The Resampling Engine)
+          1. Bootstrapping: The "Infinite Re-Test" Trick
         </h2>
 
+        <p class="text-sm font-semibold text-[#F25C05] uppercase tracking-wide font-mono">The Everyday Metaphor</p>
+        <p>
+          Imagine you have a jar containing 100 numbered raffle tickets. You reach in, pull out one ticket, write down its number on a clipboard, and <strong>drop it right back in the jar</strong> before reaching in again. Because every ticket goes right back, some lucky tickets will get drawn two or three times, and some will never get touched.
+        </p>
+
+        <p class="text-sm font-semibold text-[#F25C05] uppercase tracking-wide font-mono">Real-World Use Case</p>
+        <p>
+          <strong>Hospital Clinical Trials:</strong> You test a new cardiac drug on 150 patients. Running a brand-new trial with 150 new patients would cost millions and take three years. Bootstrapping lets you draw thousands of simulated patient groups from your original 150 participants to see if the drug's success rate stays steady or swings wildly by chance.
+        </p>
+
+        <h3 class="text-lg font-bold text-slate-900 font-display pt-2">How It Works Step-by-Step</h3>
+        <ol class="space-y-2 text-sm pl-4 list-decimal">
+          <li><strong>Draw One Record:</strong> Pick one customer or patient record at random from your dataset.</li>
+          <li><strong>Put It Back:</strong> Return the record so it can be picked again on future draws.</li>
+          <li><strong>Build a Full Replicate:</strong> Repeat this pick-and-replace process until you have gathered a brand-new batch of the same size as your original data.</li>
+          <li><strong>The Natural Leftovers:</strong> Roughly two-thirds of the rows in your original data will be in your new batch. The remaining one-third never got picked.</li>
+          <li><strong>The Free Exam:</strong> You train a model on the picked two-thirds, and immediately test its accuracy on the unpicked one-third. You just tested your model without having to collect new data.</li>
+        </ol>
+
+        <!-- Figure 1 SVG -->
         <div class="my-6 bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm not-prose">
           <div class="p-3 bg-slate-100 border-b border-slate-200 flex items-center justify-between text-xs font-mono text-slate-600">
             <span class="flex items-center gap-2">
               <span class="w-2.5 h-2.5 rounded-full bg-red-400"></span>
               <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
               <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
-              <span class="font-bold text-slate-800 ml-2">Figure 1: Non-Parametric Resampling with Replacement &amp; OOB Partitioning</span>
+              <span class="font-bold text-slate-800 ml-2">Figure 1: Shuffling Samples &amp; Leaving Behind an Automated Test Set</span>
             </span>
-            <span class="text-slate-500 font-semibold">Resampling Core</span>
+            <span class="text-slate-500 font-semibold">Resampling</span>
           </div>
           <div class="p-6 bg-[#F8F9FA] flex justify-center">
             <svg viewBox="0 0 700 240" class="w-full max-w-2xl h-auto" xmlns="http://www.w3.org/2000/svg">
               <rect x="30" y="50" width="160" height="140" rx="10" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
-              <text x="110" y="80" fill="#0F172A" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle">Original Data (N)</text>
+              <text x="110" y="80" fill="#0F172A" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle">Original Patients (100)</text>
               <circle cx="65" cy="120" r="10" fill="#0284C7"/><text x="65" y="124" fill="#FFFFFF" font-size="10" font-weight="bold" text-anchor="middle">1</text>
               <circle cx="95" cy="120" r="10" fill="#F25C05"/><text x="95" y="124" fill="#FFFFFF" font-size="10" font-weight="bold" text-anchor="middle">2</text>
               <circle cx="125" cy="120" r="10" fill="#10B981"/><text x="125" y="124" fill="#FFFFFF" font-size="10" font-weight="bold" text-anchor="middle">3</text>
               <circle cx="155" cy="120" r="10" fill="#8B5CF6"/><text x="155" y="124" fill="#FFFFFF" font-size="10" font-weight="bold" text-anchor="middle">4</text>
-              <text x="110" y="165" fill="#64748B" font-family="monospace" font-size="11" text-anchor="middle">Uniform p = 1/N</text>
+              <text x="110" y="165" fill="#64748B" font-family="monospace" font-size="11" text-anchor="middle">Equal Chance to Pick</text>
 
               <path d="M 200 100 L 290 60" stroke="#F25C05" stroke-width="2" fill="none"/>
               <path d="M 200 120 L 290 120" stroke="#F25C05" stroke-width="2" fill="none"/>
               <path d="M 200 140 L 290 180" stroke="#F25C05" stroke-width="2" fill="none"/>
 
               <rect x="300" y="30" width="180" height="50" rx="8" fill="#FFFFFF" stroke="#0284C7" stroke-width="1.5"/>
-              <text x="310" y="58" fill="#475569" font-family="monospace" font-size="11">Bag 1:</text>
+              <text x="310" y="58" fill="#475569" font-family="monospace" font-size="11">Trial Batch A:</text>
               <circle cx="365" cy="55" r="9" fill="#0284C7"/><text x="365" y="58" fill="#FFFFFF" font-size="9" font-weight="bold" text-anchor="middle">1</text>
               <circle cx="390" cy="55" r="9" fill="#0284C7"/><text x="390" y="58" fill="#FFFFFF" font-size="9" font-weight="bold" text-anchor="middle">1</text>
               <circle cx="415" cy="55" r="9" fill="#F25C05"/><text x="415" y="58" fill="#FFFFFF" font-size="9" font-weight="bold" text-anchor="middle">2</text>
               <circle cx="440" cy="55" r="9" fill="#8B5CF6"/><text x="440" y="58" fill="#FFFFFF" font-size="9" font-weight="bold" text-anchor="middle">4</text>
 
               <rect x="300" y="95" width="180" height="50" rx="8" fill="#FFFFFF" stroke="#0284C7" stroke-width="1.5"/>
-              <text x="310" y="123" fill="#475569" font-family="monospace" font-size="11">Bag 2:</text>
+              <text x="310" y="123" fill="#475569" font-family="monospace" font-size="11">Trial Batch B:</text>
               <circle cx="365" cy="120" r="9" fill="#F25C05"/><text x="365" y="123" fill="#FFFFFF" font-size="9" font-weight="bold" text-anchor="middle">2</text>
               <circle cx="390" cy="120" r="9" fill="#10B981"/><text x="390" y="123" fill="#FFFFFF" font-size="9" font-weight="bold" text-anchor="middle">3</text>
               <circle cx="415" cy="120" r="9" fill="#10B981"/><text x="415" y="123" fill="#FFFFFF" font-size="9" font-weight="bold" text-anchor="middle">3</text>
               <circle cx="440" cy="120" r="9" fill="#8B5CF6"/><text x="440" y="123" fill="#FFFFFF" font-size="9" font-weight="bold" text-anchor="middle">4</text>
 
               <rect x="300" y="160" width="180" height="50" rx="8" fill="#FFFFFF" stroke="#0284C7" stroke-width="1.5"/>
-              <text x="310" y="188" fill="#475569" font-family="monospace" font-size="11">Bag 3:</text>
+              <text x="310" y="188" fill="#475569" font-family="monospace" font-size="11">Trial Batch C:</text>
               <circle cx="365" cy="185" r="9" fill="#0284C7"/><text x="365" y="188" fill="#FFFFFF" font-size="9" font-weight="bold" text-anchor="middle">1</text>
               <circle cx="390" cy="185" r="9" fill="#F25C05"/><text x="390" y="188" fill="#FFFFFF" font-size="9" font-weight="bold" text-anchor="middle">2</text>
               <circle cx="415" cy="185" r="9" fill="#F25C05"/><text x="415" y="188" fill="#FFFFFF" font-size="9" font-weight="bold" text-anchor="middle">2</text>
               <circle cx="440" cy="185" r="9" fill="#10B981"/><text x="440" y="188" fill="#FFFFFF" font-size="9" font-weight="bold" text-anchor="middle">3</text>
 
               <rect x="520" y="60" width="150" height="120" rx="8" fill="#FEF2F2" stroke="#EF4444" stroke-width="1.5" stroke-dasharray="4,4"/>
-              <text x="595" y="90" fill="#DC2626" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">Out-Of-Bag (OOB)</text>
+              <text x="595" y="90" fill="#DC2626" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">The Leftovers</text>
               <text x="595" y="115" fill="#991B1B" font-family="monospace" font-size="16" font-weight="bold" text-anchor="middle">~36.8%</text>
-              <text x="595" y="140" fill="#64748B" font-family="sans-serif" font-size="10" text-anchor="middle">Unselected Samples</text>
-              <text x="595" y="158" fill="#059669" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="middle">Built-in Validation Set</text>
+              <text x="595" y="140" fill="#64748B" font-family="sans-serif" font-size="10" text-anchor="middle">Never picked for this run</text>
+              <text x="595" y="158" fill="#059669" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="middle">Used as a test quiz</text>
             </svg>
           </div>
           <div class="p-3.5 bg-slate-50 border-t border-slate-200 text-xs text-slate-600">
-            <strong>Figure 1:</strong> Generating $B$ replicated datasets of size $N$ with replacement from original empirical data.
+            <strong>Figure 1:</strong> Sampling with replacement leaves behind an unpicked subset you can use to test models without collecting new data.
           </div>
         </div>
 
-        <p>
-          Before exploring complex estimators, we examine the sampling engine that enables non-parametric variance reduction: <strong>Bootstrapping</strong>. Formally, given a training sample $\mathcal{D} = \{\mathbf{x}_1, \dots, \mathbf{x}_N\}$, bootstrapping constructs $B$ distinct empirical replicates $\mathcal{D}^*_1, \dots, \mathcal{D}^*_B$ by uniformly drawing $N$ observations with replacement.
-        </p>
-        <p>
-          Because selection occurs with replacement, any given observation has a fixed selection probability of $1/N$ on each draw. The probability that an arbitrary observation is <em>never</em> selected across $N$ draws converges asymptotically:
-        </p>
-        <div class="my-4 not-prose p-4 bg-slate-50 border border-slate-200 rounded-xl text-center text-sm font-mono overflow-x-auto">
-          $$\lim_{N \to \infty} \left(1 - \frac{1}{N}\right)^N = \frac{1}{e} \approx 0.3679 \quad (36.8\%)$$
-        </div>
-        <p>
-          Consequently, approximately <strong>63.2%</strong> of unique records appear in each training bag. The remaining <strong>36.8%</strong> comprise the <strong>Out-Of-Bag (OOB)</strong> partition, providing a deterministic validation set without requiring cross-validation splits.
+        <p class="text-sm">
+          <strong>The Catch:</strong> If your original dataset has blind spots (for example, you only tested patients aged 20–30), bootstrapping won't fix that. It can only reshuffle the data it has; it cannot invent patterns that were never there.
         </p>
       </section>
 
       <!-- SECTION 2: LINEAR & LOGISTIC REGRESSION -->
       <section id="linear-models" class="space-y-4 mb-20">
         <h2 class="text-3xl font-bold tracking-tight text-slate-950 font-display border-b border-slate-200 pb-3">
-          2. Linear &amp; Logistic Regression (Parametric Foundations)
+          2. Linear vs. Logistic Regression: Predicting Numbers vs. Outcomes
         </h2>
 
+        <p class="text-sm font-semibold text-[#F25C05] uppercase tracking-wide font-mono">The Everyday Metaphor</p>
+        <p>
+          <strong>Linear Regression (The Trend Ruler):</strong> You have a scatter plot of apartment sizes and rents. You lay a long wooden ruler across the dots and tilt it until the ruler passes as close to as many dots as possible. You use that ruler to estimate the rent for an apartment size you haven't seen before.
+        </p>
+        <p>
+          <strong>Logistic Regression (The S-Curve Gatekeeper):</strong> You want to know if a borrower will repay a loan. A straight ruler is dangerous because if an applicant has an enormous income, a straight line might predict a repayment probability of 140%, or if their credit score is zero, it might predict -30%. Logistic regression bends that straight ruler into an <strong>S-shaped curve</strong>, locking every prediction cleanly between 0% and 100%.
+        </p>
+
+        <p class="text-sm font-semibold text-[#F25C05] uppercase tracking-wide font-mono">Real-World Use Cases</p>
+        <ul class="space-y-2 text-sm pl-4 list-disc">
+          <li><strong>Linear Regression:</strong> Estimating used car prices based on mileage, age, and horsepower.</li>
+          <li><strong>Logistic Regression:</strong> Banking fraud detection—scoring whether a credit card transaction has a 2% or 94% chance of being stolen.</li>
+        </ul>
+
+        <h3 class="text-lg font-bold text-slate-900 font-display pt-2">How Linear Regression Computes Step-by-Step</h3>
+        <ol class="space-y-2 text-sm pl-4 list-decimal">
+          <li><strong>Draw an Initial Line:</strong> Lay down a starting ruler across your data points.</li>
+          <li><strong>Measure the Vertical Misses:</strong> For every single point, measure how far above or below the line it sits.</li>
+          <li><strong>Square the Errors:</strong> Square those gap distances so negative numbers turn positive and large errors get penalized heavily.</li>
+          <li><strong>Lock the Best Fit:</strong> Adjust the line's angle and starting height until the total sum of squared gaps is as small as it can possibly be.</li>
+        </ol>
+
+        <h3 class="text-lg font-bold text-slate-900 font-display pt-4">How Logistic Regression Computes Step-by-Step</h3>
+        <ol class="space-y-2 text-sm pl-4 list-decimal">
+          <li><strong>Calculate a Raw Score:</strong> Add up the customer's features (income, late payments, loan size) into a single score.</li>
+          <li><strong>Bend through the S-Curve:</strong> Squeeze that score through the S-curve so extreme negative numbers approach 0% and extreme positive numbers approach 100%.</li>
+          <li><strong>Penalize Confident Blunders:</strong> If the model predicts a 99% chance a borrower will repay and they default, penalize the model heavily.</li>
+          <li><strong>Tune the Curve:</strong> Shift the curve until the predicted percentages match real-world default rates.</li>
+          <li><strong>Set the Threshold:</strong> Pick a cutoff (e.g., if probability &gt; 50%, flag as "Fraud"; otherwise, approve).</li>
+        </ol>
+
+        <!-- Figure 2 SVG -->
         <div class="my-6 bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm not-prose">
           <div class="p-3 bg-slate-100 border-b border-slate-200 flex items-center justify-between text-xs font-mono text-slate-600">
             <span class="flex items-center gap-2">
               <span class="w-2.5 h-2.5 rounded-full bg-red-400"></span>
               <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
               <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
-              <span class="font-bold text-slate-800 ml-2">Figure 2: Continuous Hyperplane vs. Sigmoid Probability S-Curve</span>
+              <span class="font-bold text-slate-800 ml-2">Figure 2: Drawing a Trend Line vs. Bending into Probabilities</span>
             </span>
-            <span class="text-slate-500 font-semibold">Parametric Baseline</span>
+            <span class="text-slate-500 font-semibold">Continuous vs. Yes/No</span>
           </div>
           <div class="p-6 bg-[#F8F9FA] flex justify-center">
             <svg viewBox="0 0 700 280" class="w-full max-w-2xl h-auto" xmlns="http://www.w3.org/2000/svg">
               <g transform="translate(20, 10)">
-                <text x="140" y="25" fill="#0F172A" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="middle">Linear Regression (Continuous Target)</text>
+                <text x="140" y="25" fill="#0F172A" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="middle">Linear: Predict a Quantity</text>
                 <line x1="40" y1="230" x2="260" y2="230" stroke="#CBD5E1" stroke-width="2" />
                 <line x1="40" y1="230" x2="40" y2="40" stroke="#CBD5E1" stroke-width="2" />
-                <text x="255" y="222" fill="#64748B" font-family="monospace" font-size="10">X</text>
-                <text x="48" y="52" fill="#64748B" font-family="monospace" font-size="10">Y</text>
+                <text x="255" y="222" fill="#64748B" font-family="monospace" font-size="10">Size</text>
+                <text x="48" y="52" fill="#64748B" font-family="monospace" font-size="10">Price</text>
 
                 <line x1="50" y1="210" x2="250" y2="70" stroke="#F25C05" stroke-width="2.5" />
-                <text x="160" y="85" fill="#F25C05" font-family="monospace" font-size="10" font-weight="bold">ŷ = βᵀX + β₀</text>
-
                 <circle cx="80" cy="180" r="4" fill="#0284C7" />
                 <circle cx="120" cy="170" r="4" fill="#0284C7" />
                 <line x1="120" y1="170" x2="120" y2="161" stroke="#EF4444" stroke-width="1.5" stroke-dasharray="2,2" />
                 <circle cx="160" cy="120" r="4" fill="#0284C7" />
-                <line x1="160" y1="120" x2="160" y2="133" stroke="#EF4444" stroke-width="1.5" stroke-dasharray="2,2" />
                 <circle cx="210" cy="90" r="4" fill="#0284C7" />
-                <circle cx="230" cy="88" r="4" fill="#0284C7" />
               </g>
 
               <line x1="330" y1="30" x2="330" y2="250" stroke="#E2E8F0" stroke-width="1.5" stroke-dasharray="4,4" />
 
               <g transform="translate(350, 10)">
-                <text x="160" y="25" fill="#0F172A" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="middle">Logistic Regression (Probability P ∈ [0, 1])</text>
+                <text x="160" y="25" fill="#0F172A" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="middle">Logistic: Predict Probability</text>
                 <line x1="40" y1="230" x2="290" y2="230" stroke="#CBD5E1" stroke-width="2" />
                 <line x1="40" y1="230" x2="40" y2="40" stroke="#CBD5E1" stroke-width="2" />
                 
                 <line x1="40" y1="65" x2="285" y2="65" stroke="#94A3B8" stroke-width="1" stroke-dasharray="3,3" />
-                <text x="25" y="70" fill="#64748B" font-family="monospace" font-size="10">1.0</text>
+                <text x="15" y="70" fill="#64748B" font-family="monospace" font-size="10">100%</text>
                 <line x1="40" y1="147" x2="285" y2="147" stroke="#CBD5E1" stroke-width="1" stroke-dasharray="2,2" />
-                <text x="25" y="151" fill="#64748B" font-family="monospace" font-size="10">0.5</text>
-                <text x="25" y="234" fill="#64748B" font-family="monospace" font-size="10">0.0</text>
+                <text x="20" y="151" fill="#64748B" font-family="monospace" font-size="10">50%</text>
+                <text x="25" y="234" fill="#64748B" font-family="monospace" font-size="10">0%</text>
 
                 <path d="M 45 224 C 110 224, 130 220, 165 147 C 200 75, 220 66, 280 66" fill="none" stroke="#F25C05" stroke-width="2.5" />
-                <text x="175" y="105" fill="#F25C05" font-family="monospace" font-size="10" font-weight="bold">p = σ(z)</text>
-
                 <circle cx="60" cy="225" r="4" fill="#EF4444" />
                 <circle cx="90" cy="225" r="4" fill="#EF4444" />
-                <circle cx="120" cy="225" r="4" fill="#EF4444" />
                 <circle cx="210" cy="65" r="4" fill="#10B981" />
-                <circle cx="240" cy="65" r="4" fill="#10B981" />
                 <circle cx="270" cy="65" r="4" fill="#10B981" />
               </g>
             </svg>
           </div>
           <div class="p-3.5 bg-slate-50 border-t border-slate-200 text-xs text-slate-600">
-            <strong>Figure 2:</strong> Comparing the continuous hyperplane of Linear Regression with the Sigmoidal $[0, 1]$ mapping of Logistic Regression.
+            <strong>Figure 2:</strong> Fitting a straight line for continuous targets vs. bending the prediction into an S-curve for probabilities.
           </div>
         </div>
 
-        <p>
-          Parametric methods establish foundational predictive benchmarks by assuming a defined mathematical form for the decision surface:
+        <p class="text-sm">
+          <strong>The Catch:</strong> Both models assume the relationship between your inputs and output is smooth and straightforward. If real-world behavior has sharp cliff-edges or twists, straight lines will miss them.
         </p>
-
-        <ul class="space-y-4 text-sm">
-          <li>
-            <strong>Linear Regression (Continuous Target):</strong> Models an unbounded real-valued target $y \in \mathbb{R}$ via Ordinary Least Squares (OLS):
-            <div class="my-2 not-prose p-3 bg-slate-50 border border-slate-200 rounded-lg text-center overflow-x-auto">
-              $$\mathcal{L}_{\text{OLS}}(\boldsymbol{\beta}) = \sum_{i=1}^n \left( y_i - \mathbf{x}_i^T \boldsymbol{\beta} \right)^2 = \|\mathbf{y} - \mathbf{X}\boldsymbol{\beta}\|_2^2$$
-            </div>
-            Minimizing this quadratic surface yields the closed-form normal equation: $\boldsymbol{\beta}^* = (\mathbf{X}^T \mathbf{X})^{-1} \mathbf{X}^T \mathbf{y}$.
-          </li>
-          <li>
-            <strong>Logistic Regression (Binary / Probability Target):</strong> Maps linear combinations to calibrated probabilities using the non-linear Sigmoid link function:
-            <div class="my-2 not-prose p-3 bg-slate-50 border border-slate-200 rounded-lg text-center overflow-x-auto">
-              $$P(y = 1 \mid \mathbf{x}) = \sigma(\mathbf{x}^T \boldsymbol{\beta}) = \frac{1}{1 + e^{-\mathbf{x}^T \boldsymbol{\beta}}}$$
-            </div>
-            Parameters are optimized via maximum likelihood, minimizing the convex Binary Cross-Entropy (Log-Loss):
-            <div class="my-2 not-prose p-3 bg-slate-50 border border-slate-200 rounded-lg text-center overflow-x-auto">
-              $$\mathcal{L}_{\text{BCE}}(\boldsymbol{\beta}) = -\frac{1}{n} \sum_{i=1}^n \left[ y_i \ln(\hat{p}_i) + (1 - y_i) \ln(1 - \hat{p}_i) \right]$$
-            </div>
-          </li>
-        </ul>
       </section>
 
       <!-- SECTION 3: DECISION TREES -->
       <section id="tree-models" class="space-y-4 mb-20">
         <h2 class="text-3xl font-bold tracking-tight text-slate-950 font-display border-b border-slate-200 pb-3">
-          3. Decision Trees (CART Algorithm)
+          3. Decision Trees: The Diagnostic Flowchart
         </h2>
 
+        <p class="text-sm font-semibold text-[#F25C05] uppercase tracking-wide font-mono">The Everyday Metaphor</p>
+        <p>
+          Think of an IT support flowchart or a game of <em>20 Questions</em>. The technician asks: <em>"Is the screen turning on?"</em> If no, go to the power plug check. If yes, ask: <em>"Are you hearing three beeps?"</em> Each question splits possibilities down narrower branches until you reach the fix at the bottom.
+        </p>
+
+        <p class="text-sm font-semibold text-[#F25C05] uppercase tracking-wide font-mono">Real-World Use Case</p>
+        <p>
+          <strong>Loan Underwriting Rules:</strong> Regulated banks must explain to denied applicants exactly why they were rejected. A decision tree produces clear rules you can read aloud: <em>"Credit score under 620 AND debt-to-income above 45% = Loan Denied."</em>
+        </p>
+
+        <h3 class="text-lg font-bold text-slate-900 font-display pt-2">How It Works Step-by-Step</h3>
+        <ol class="space-y-2 text-sm pl-4 list-decimal">
+          <li><strong>Test Every Question:</strong> At the top node, test every single feature (Age, Income, Credit Score) and every potential cutoff point.</li>
+          <li><strong>Find the Cleanest Cut:</strong> Pick the single question that separates the two outcomes as cleanly as possible (e.g., puts mostly defaulters on the left and mostly non-defaulters on the right).</li>
+          <li><strong>Branch Out:</strong> Split the data into two branches based on that winning question.</li>
+          <li><strong>Repeat on Each Branch:</strong> On both branches, search for the next best question to divide those smaller groups.</li>
+          <li><strong>Stop and Decide:</strong> Stop once branches hit a safety limit (like maximum 4 levels deep). The endpoints (leaves) deliver the majority verdict.</li>
+        </ol>
+
+        <!-- Figure 3 SVG -->
         <div class="my-6 bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm not-prose">
           <div class="p-3 bg-slate-100 border-b border-slate-200 flex items-center justify-between text-xs font-mono text-slate-600">
             <span class="flex items-center gap-2">
               <span class="w-2.5 h-2.5 rounded-full bg-red-400"></span>
               <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
               <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
-              <span class="font-bold text-slate-800 ml-2">Figure 3: Recursive Binary Partitioning Hierarchy</span>
+              <span class="font-bold text-slate-800 ml-2">Figure 3: Breaking Problems Down Through Simple Binary Questions</span>
             </span>
-            <span class="text-slate-500 font-semibold">CART</span>
+            <span class="text-slate-500 font-semibold">Flowchart Logic</span>
           </div>
           <div class="p-6 bg-[#F8F9FA] flex justify-center">
             <svg viewBox="0 0 600 240" class="w-full max-w-xl h-auto" xmlns="http://www.w3.org/2000/svg">
               <rect x="230" y="20" width="140" height="45" rx="8" fill="#FFFFFF" stroke="#F25C05" stroke-width="2"/>
-              <text x="300" y="47" fill="#0F172A" font-family="monospace" font-size="12" font-weight="bold" text-anchor="middle">Feature X₁ ≤ 4.5?</text>
+              <text x="300" y="47" fill="#0F172A" font-family="monospace" font-size="12" font-weight="bold" text-anchor="middle">Income &gt; $50k?</text>
 
               <line x1="260" y1="65" x2="160" y2="110" stroke="#94A3B8" stroke-width="2"/>
               <text x="190" y="85" fill="#059669" font-family="monospace" font-size="11" font-weight="bold">Yes</text>
@@ -322,390 +323,404 @@
               <text x="400" y="85" fill="#DC2626" font-family="monospace" font-size="11" font-weight="bold">No</text>
 
               <rect x="370" y="110" width="140" height="45" rx="8" fill="#FFFFFF" stroke="#0284C7" stroke-width="2"/>
-              <text x="440" y="137" fill="#0F172A" font-family="monospace" font-size="12" font-weight="bold" text-anchor="middle">Feature X₂ ≤ 12?</text>
+              <text x="440" y="137" fill="#0F172A" font-family="monospace" font-size="12" font-weight="bold" text-anchor="middle">Credit Score &gt; 650?</text>
 
               <rect x="90" y="110" width="140" height="45" rx="8" fill="#ECFDF5" stroke="#10B981" stroke-width="2"/>
-              <text x="160" y="137" fill="#065F46" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">Class A (Purity 1.0)</text>
+              <text x="160" y="137" fill="#065F46" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">Approve Loan</text>
 
               <line x1="400" y1="155" x2="330" y2="190" stroke="#94A3B8" stroke-width="2"/>
               <line x1="480" y1="155" x2="520" y2="190" stroke="#94A3B8" stroke-width="2"/>
 
               <rect x="250" y="185" width="130" height="40" rx="8" fill="#FDF2F8" stroke="#DB2777" stroke-width="1.5"/>
-              <text x="315" y="210" fill="#9D174D" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="middle">Class B</text>
+              <text x="315" y="210" fill="#9D174D" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="middle">Deny Loan</text>
 
               <rect x="470" y="185" width="130" height="40" rx="8" fill="#ECFDF5" stroke="#10B981" stroke-width="1.5"/>
-              <text x="535" y="210" fill="#065F46" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="middle">Class A</text>
+              <text x="535" y="210" fill="#065F46" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="middle">Approve Loan</text>
             </svg>
           </div>
           <div class="p-3.5 bg-slate-50 border-t border-slate-200 text-xs text-slate-600">
-            <strong>Figure 3:</strong> Hierarchical feature threshold splitting yielding orthogonal decision regions.
+            <strong>Figure 3:</strong> Flowchart branches dividing records down to clear, readable decision leaves.
           </div>
         </div>
 
-        <p>
-          Moving beyond linear hyperplanes, <strong>Decision Trees (CART)</strong> construct non-parametric models by recursively dividing the feature space into axis-aligned rectangular blocks. Each split greedily evaluates every feature $j$ and boundary $s$ to maximize purity gain:
-        </p>
-
-        <ul class="space-y-4 text-sm">
-          <li>
-            <strong>Classification (Gini Impurity):</strong> Measures the likelihood that a random sample is mislabeled:
-            <div class="my-2 not-prose p-3 bg-slate-50 border border-slate-200 rounded-lg text-center overflow-x-auto">
-              $$I_G(p) = 1 - \sum_{k=1}^K p_k^2$$
-            </div>
-          </li>
-          <li>
-            <strong>Regression (Variance Reduction):</strong> Minimizes total squared residual error across child nodes:
-            <div class="my-2 not-prose p-3 bg-slate-50 border border-slate-200 rounded-lg text-center overflow-x-auto">
-              $$\mathcal{L}_{\text{split}} = \sum_{i \in R_L} (y_i - \bar{y}_{R_L})^2 + \sum_{i \in R_R} (y_i - \bar{y}_{R_R})^2$$
-            </div>
-          </li>
-        </ul>
-
-        <p>
-          <strong>The Variance Bottleneck:</strong> Individual decision trees have low bias but high variance; minor data shifts can trigger structural alterations throughout the hierarchy, leading to overfitting.
+        <p class="text-sm">
+          <strong>The Catch:</strong> A single tree tries so hard to classify every single historical customer that it creates hyper-specific rules for one-off anomalies. It effectively memorizes the past instead of learning patterns that apply to the future.
         </p>
       </section>
 
-      <!-- SECTION 4: BAGGING & RANDOM FORESTS -->
+      <!-- SECTION 4: RANDOM FORESTS -->
       <section id="bagging-rf" class="space-y-4 mb-20">
         <h2 class="text-3xl font-bold tracking-tight text-slate-950 font-display border-b border-slate-200 pb-3">
-          4. Bagging &amp; Random Forests (Variance Reduction)
+          4. Random Forests: The Wisdom of Diverse Crowds
         </h2>
 
+        <p class="text-sm font-semibold text-[#F25C05] uppercase tracking-wide font-mono">The Everyday Metaphor</p>
+        <p>
+          If you have an unusual medical condition, you wouldn't rely on just one doctor who might have a personal bias or a bad day. You assemble a <strong>panel of 100 doctors</strong> and take a majority vote.
+        </p>
+        <p>
+          To make sure they don't all make the same mistake, you give each doctor a slightly different subset of patient records, and you only show each doctor a random selection of symptoms at each step of their diagnosis. Because they examine different clues, their personal mistakes cancel out when they vote.
+        </p>
+
+        <p class="text-sm font-semibold text-[#F25C05] uppercase tracking-wide font-mono">Real-World Use Case</p>
+        <p>
+          <strong>E-Commerce Churn Prediction:</strong> Predicting which subscribers are about to cancel. Some customers churn because of customer service complaints; others leave due to pricing or lack of app usage. A single tree misses these overlapping clues, but a forest of 100 trees catches them easily.
+        </p>
+
+        <h3 class="text-lg font-bold text-slate-900 font-display pt-2">How It Works Step-by-Step</h3>
+        <ol class="space-y-2 text-sm pl-4 list-decimal">
+          <li><strong>Shuffle the Training Bags:</strong> Use bootstrapping to create 100 slightly different versions of your dataset.</li>
+          <li><strong>Grow 100 Independent Trees:</strong> Give each dataset version to its own decision tree running in parallel.</li>
+          <li><strong>Enforce the "Blindfold":</strong> When a tree picks its next question, do not let it see all columns. Force it to choose from a small, random selection of features.</li>
+          <li><strong>Build Varied Perspectives:</strong> One tree focuses on customer age and tenure; another focuses on login frequency and ticket history.</li>
+          <li><strong>Count the Votes:</strong> When a new customer arrives, let all 100 trees cast their vote. If 78 say "Will Churn," you take action.</li>
+        </ol>
+
+        <!-- Figure 4 SVG -->
         <div class="my-6 bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm not-prose">
           <div class="p-3 bg-slate-100 border-b border-slate-200 flex items-center justify-between text-xs font-mono text-slate-600">
             <span class="flex items-center gap-2">
               <span class="w-2.5 h-2.5 rounded-full bg-red-400"></span>
               <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
               <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
-              <span class="font-bold text-slate-800 ml-2">Figure 4: Parallel Tree Aggregation &amp; Subspace De-correlation</span>
+              <span class="font-bold text-slate-800 ml-2">Figure 4: Independent Trees Voting Together to Eliminate Random Errors</span>
             </span>
             <span class="text-slate-500 font-semibold">Ensemble</span>
           </div>
           <div class="p-6 bg-[#F8F9FA] flex justify-center">
             <svg viewBox="0 0 700 230" class="w-full max-w-2xl h-auto" xmlns="http://www.w3.org/2000/svg">
               <rect x="20" y="80" width="110" height="70" rx="8" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5"/>
-              <text x="75" y="115" fill="#0F172A" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">Data (N, p)</text>
-              <text x="75" y="135" fill="#64748B" font-family="monospace" font-size="10" text-anchor="middle">Full Dataset</text>
+              <text x="75" y="115" fill="#0F172A" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">Customer Data</text>
+              <text x="75" y="135" fill="#64748B" font-family="monospace" font-size="10" text-anchor="middle">All Features</text>
 
               <line x1="130" y1="95" x2="220" y2="50" stroke="#F25C05" stroke-width="1.5"/>
               <line x1="130" y1="115" x2="220" y2="115" stroke="#F25C05" stroke-width="1.5"/>
               <line x1="130" y1="135" x2="220" y2="180" stroke="#F25C05" stroke-width="1.5"/>
 
               <rect x="220" y="25" width="170" height="50" rx="8" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5"/>
-              <text x="305" y="47" fill="#0F172A" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="middle">Tree 1 (Subset √p)</text>
-              <text x="305" y="63" fill="#059669" font-family="monospace" font-size="10" text-anchor="middle">Prediction: ŷ₁</text>
+              <text x="305" y="47" fill="#0F172A" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="middle">Tree 1 (Usage &amp; Age)</text>
+              <text x="305" y="63" fill="#059669" font-family="monospace" font-size="10" text-anchor="middle">Vote: Will Churn</text>
 
               <rect x="220" y="90" width="170" height="50" rx="8" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5"/>
-              <text x="305" y="112" fill="#0F172A" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="middle">Tree 2 (Subset √p)</text>
-              <text x="305" y="128" fill="#059669" font-family="monospace" font-size="10" text-anchor="middle">Prediction: ŷ₂</text>
+              <text x="305" y="112" fill="#0F172A" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="middle">Tree 2 (Price &amp; Support)</text>
+              <text x="305" y="128" fill="#059669" font-family="monospace" font-size="10" text-anchor="middle">Vote: Will Churn</text>
 
               <rect x="220" y="155" width="170" height="50" rx="8" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5"/>
-              <text x="305" y="177" fill="#0F172A" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="middle">Tree B (Subset √p)</text>
-              <text x="305" y="193" fill="#059669" font-family="monospace" font-size="10" text-anchor="middle">Prediction: ŷ_B</text>
+              <text x="305" y="177" fill="#0F172A" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="middle">Tree 100 (Tenure &amp; Plan)</text>
+              <text x="305" y="193" fill="#EF4444" font-family="monospace" font-size="10" text-anchor="middle">Vote: Will Stay</text>
 
               <line x1="390" y1="50" x2="490" y2="105" stroke="#CBD5E1" stroke-width="1.5"/>
               <line x1="390" y1="115" x2="490" y2="115" stroke="#CBD5E1" stroke-width="1.5"/>
               <line x1="390" y1="180" x2="490" y2="125" stroke="#CBD5E1" stroke-width="1.5"/>
 
               <rect x="490" y="80" width="180" height="70" rx="8" fill="#FFF7ED" stroke="#F25C05" stroke-width="2"/>
-              <text x="580" y="107" fill="#C2410C" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">Consensus Aggregation</text>
-              <text x="580" y="125" fill="#0F172A" font-family="monospace" font-size="10" text-anchor="middle">Mean (Reg) / Majority (Clf)</text>
-              <text x="580" y="140" fill="#64748B" font-family="monospace" font-size="9" text-anchor="middle">ŷ = (1/B) Σ ŷ_b</text>
+              <text x="580" y="107" fill="#C2410C" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">Consensus Verdict</text>
+              <text x="580" y="125" fill="#0F172A" font-family="monospace" font-size="10" text-anchor="middle">Majority Vote Wins</text>
+              <text x="580" y="140" fill="#64748B" font-family="monospace" font-size="9" text-anchor="middle">Reliable &amp; Steady</text>
             </svg>
           </div>
           <div class="p-3.5 bg-slate-50 border-t border-slate-200 text-xs text-slate-600">
-            <strong>Figure 4:</strong> Training $B$ de-correlated trees in parallel over random row and feature subsets to reduce variance.
+            <strong>Figure 4:</strong> Training trees independently on random features prevents them from making the same correlated mistake.
           </div>
         </div>
 
-        <p>
-          By combining <strong>Bootstrapping (Section 1)</strong> with <strong>Decision Trees (Section 3)</strong>, <strong>Bagging</strong> trains $B$ unpruned trees across bootstrap replicates and averages their predictions:
-        </p>
-
-        <div class="my-4 not-prose p-4 bg-slate-50 border border-slate-200 rounded-xl text-center text-sm font-mono overflow-x-auto">
-          $$\hat{f}_{\text{bag}}(\mathbf{x}) = \frac{1}{B} \sum_{b=1}^B \hat{f}_b(\mathbf{x})$$
-        </div>
-
-        <p>
-          <strong>The Random Forest Breakthrough:</strong> In standard bagging, dominant predictors appear at the root of every tree, leaving the ensemble members correlated. Leo Breiman resolved this through <em>Feature Subspace Sampling</em>: evaluating only a random subset of $m$ features ($m \approx \sqrt{p}$) at every split.
-        </p>
-
-        <div class="my-4 not-prose p-4 bg-slate-50 border border-slate-200 rounded-xl text-center text-sm font-mono overflow-x-auto">
-          $$\text{Var}\left(\frac{1}{B}\sum_{b=1}^B X_b\right) = \rho \sigma^2 + \frac{1 - \rho}{B} \sigma^2$$
-        </div>
-
         <p class="text-sm">
-          Reducing the inter-tree correlation coefficient $\rho$ lowers overall ensemble variance toward $\rho \sigma^2$ without inflating model bias.
+          <strong>The Catch:</strong> Storing 100 deep trees makes model files large. In situations requiring split-second decisions (like real-time ad bidding), querying hundreds of trees can introduce latency.
         </p>
       </section>
 
       <!-- SECTION 5: THE BOOSTING PARADIGM -->
       <section id="boosting" class="space-y-4 mb-20">
         <h2 class="text-3xl font-bold tracking-tight text-slate-950 font-display border-b border-slate-200 pb-3">
-          5. The Boosting Paradigm: Sequential Learning
+          5. The Boosting Philosophy: The Relay Team of Specialists
         </h2>
+
+        <p class="text-sm font-semibold text-[#F25C05] uppercase tracking-wide font-mono">The Everyday Metaphor</p>
         <p>
-          While Bagging fits independent models in parallel to reduce variance, <strong>Boosting</strong> constructs an additive sequence of weak models to systematically minimize <strong>bias</strong>:
+          Random Forest trains its trees all at once in parallel. <strong>Boosting takes the opposite approach: it works like a tutoring relay race.</strong>
+        </p>
+        <p>
+          Student #1 takes a mock exam. They score 75%, getting 25 questions wrong. Instead of starting from scratch with a brand-new student, Tutor #2 steps in and reviews <em>specifically those 25 mistakes</em>. Then Tutor #3 steps in to focus only on whatever Tutor #2 couldn't fix. Each new specialist dedicates their effort to clearing up previous errors.
         </p>
 
-        <div class="my-4 not-prose p-4 bg-slate-50 border border-slate-200 rounded-xl text-center text-sm font-mono overflow-x-auto">
-          $$F_M(\mathbf{x}) = \sum_{m=1}^M \gamma_m h_m(\mathbf{x})$$
-        </div>
-
-        <p class="text-sm">
-          Instead of voting independently, each successive base estimator $h_m(\mathbf{x})$ (typically a shallow decision stump) is trained to fit the residual errors of the existing ensemble $F_{m-1}(\mathbf{x})$.
-        </p>
+        <h3 class="text-lg font-bold text-slate-900 font-display pt-2">How It Works Step-by-Step</h3>
+        <ol class="space-y-2 text-sm pl-4 list-decimal">
+          <li><strong>Start with a Baseline Guess:</strong> Predict an initial average value for all records.</li>
+          <li><strong>Identify the Gaps:</strong> Calculate the difference between what the current model predicted and the actual answer for every row.</li>
+          <li><strong>Train a Specialist:</strong> Build a small decision tree trained solely on those leftover gaps.</li>
+          <li><strong>Tap the Brakes:</strong> Scale down the specialist's adjustments with a learning rate so no single model over-corrects too far in one step.</li>
+          <li><strong>Add to the Team:</strong> Add the specialist to the model roster and repeat the process for hundreds of rounds.</li>
+        </ol>
       </section>
 
       <!-- SECTION 6: ADABOOST -->
       <section id="adaboost" class="space-y-4 mb-20">
         <h2 class="text-3xl font-bold tracking-tight text-slate-950 font-display border-b border-slate-200 pb-3">
-          6. Adaptive Boosting (AdaBoost)
+          6. AdaBoost: Highlighting the Hard Questions
         </h2>
 
+        <p class="text-sm font-semibold text-[#F25C05] uppercase tracking-wide font-mono">The Everyday Metaphor</p>
+        <p>
+          Imagine studying for an exam with flashcards. When you answer a card correctly, you set it aside. When you get one wrong, you <strong>mark it with a bright neon highlighter and put it on top of the pile</strong>. Your next study session focuses on those highlighted cards until you master them.
+        </p>
+
+        <p class="text-sm font-semibold text-[#F25C05] uppercase tracking-wide font-mono">Real-World Use Case</p>
+        <p>
+          <strong>Camera Face Detection:</strong> In early digital cameras, AdaBoost checked whether an image patch was a human face. It used quick, simple tests (e.g., <em>"Is the eye bridge darker than the forehead?"</em>). It trained successive tests to handle confusing edge cases—like shadows or tilted faces—without draining the camera's battery.
+        </p>
+
+        <h3 class="text-lg font-bold text-slate-900 font-display pt-2">How It Works Step-by-Step</h3>
+        <ol class="space-y-2 text-sm pl-4 list-decimal">
+          <li><strong>Start Equal:</strong> Give every row in your dataset the same initial weight.</li>
+          <li><strong>Build a 1-Question Stump:</strong> Train a single-split decision tree that answers one basic question.</li>
+          <li><strong>Award Megaphone Power:</strong> If the stump performs well, give it a loud voice (high voting power). If it struggles, reduce its influence.</li>
+          <li><strong>Magnify the Errors:</strong> Boost the weight of any rows the stump got wrong so they look much larger to the next model.</li>
+          <li><strong>Target the Edge Cases:</strong> The next stump is forced to focus on those highlighted rows. Repeat for dozens of iterations.</li>
+          <li><strong>Weighted Tally:</strong> Take a final vote where high-accuracy stumps cast heavier votes than weaker ones.</li>
+        </ol>
+
+        <!-- Figure 5 SVG -->
         <div class="my-6 bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm not-prose">
           <div class="p-3 bg-slate-100 border-b border-slate-200 flex items-center justify-between text-xs font-mono text-slate-600">
             <span class="flex items-center gap-2">
               <span class="w-2.5 h-2.5 rounded-full bg-red-400"></span>
               <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
               <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
-              <span class="font-bold text-slate-800 ml-2">Figure 5: AdaBoost Sequential Error Reweighting</span>
+              <span class="font-bold text-slate-800 ml-2">Figure 5: Highlighting Hard Mistakes for Subsequent Learners</span>
             </span>
-            <span class="text-slate-500 font-semibold">Sequential</span>
+            <span class="text-slate-500 font-semibold">Adaptive Learning</span>
           </div>
           <div class="p-6 bg-[#F8F9FA] flex justify-center">
             <svg viewBox="0 0 700 200" class="w-full max-w-2xl h-auto" xmlns="http://www.w3.org/2000/svg">
               <rect x="20" y="40" width="160" height="120" rx="8" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5"/>
-              <text x="100" y="65" fill="#0F172A" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">Stage 1: Base Tree</text>
+              <text x="100" y="65" fill="#0F172A" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">Stage 1: Equal Weight</text>
               <circle cx="50" cy="100" r="8" fill="#0284C7"/><text x="50" y="103" fill="#FFF" font-size="8" text-anchor="middle">+</text>
               <circle cx="80" cy="100" r="8" fill="#EF4444"/><text x="80" y="103" fill="#FFF" font-size="8" text-anchor="middle">-</text>
               <circle cx="110" cy="100" r="8" fill="#EF4444"/><text x="110" y="103" fill="#FFF" font-size="8" text-anchor="middle">-</text>
               <circle cx="140" cy="100" r="8" fill="#0284C7"/><text x="140" y="103" fill="#FFF" font-size="8" text-anchor="middle">+</text>
-              <text x="100" y="140" fill="#64748B" font-family="monospace" font-size="10" text-anchor="middle">Equal Weights w = 1/N</text>
+              <text x="100" y="140" fill="#64748B" font-family="monospace" font-size="10" text-anchor="middle">Every row counts equally</text>
 
               <line x1="185" y1="100" x2="235" y2="100" stroke="#F25C05" stroke-width="2"/>
               <polygon points="235,96 245,100 235,104" fill="#F25C05"/>
 
               <rect x="250" y="40" width="180" height="120" rx="8" fill="#FFFFFF" stroke="#F25C05" stroke-width="1.5"/>
-              <text x="340" y="65" fill="#0F172A" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">Stage 2: Sample Reweighting</text>
+              <text x="340" y="65" fill="#0F172A" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">Stage 2: Focus on Mistakes</text>
               <circle cx="280" cy="100" r="6" fill="#0284C7"/>
               <circle cx="320" cy="100" r="14" fill="#EF4444" stroke="#B91C1C" stroke-width="1.5"/><text x="320" y="104" fill="#FFF" font-size="10" font-weight="bold" text-anchor="middle">-</text>
               <circle cx="360" cy="100" r="14" fill="#EF4444" stroke="#B91C1C" stroke-width="1.5"/><text x="360" y="104" fill="#FFF" font-size="10" font-weight="bold" text-anchor="middle">-</text>
               <circle cx="400" cy="100" r="6" fill="#0284C7"/>
-              <text x="340" y="145" fill="#DC2626" font-family="monospace" font-size="10" text-anchor="middle">Errors Scaled Up by e^α</text>
+              <text x="340" y="145" fill="#DC2626" font-family="monospace" font-size="10" text-anchor="middle">Misses highlighted</text>
 
               <line x1="435" y1="100" x2="485" y2="100" stroke="#F25C05" stroke-width="2"/>
               <polygon points="485,96 495,100 485,104" fill="#F25C05"/>
 
               <rect x="500" y="40" width="180" height="120" rx="8" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5"/>
-              <text x="590" y="65" fill="#0F172A" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">Final Model: Sign(Σ αₘ hₘ)</text>
-              <text x="590" y="105" fill="#059669" font-family="monospace" font-size="13" font-weight="bold" text-anchor="middle">Weighted Vote</text>
-              <text x="590" y="130" fill="#64748B" font-family="sans-serif" font-size="10" text-anchor="middle">Higher accuracy models</text>
-              <text x="590" y="145" fill="#64748B" font-family="sans-serif" font-size="10" text-anchor="middle">receive higher weight αₘ</text>
+              <text x="590" y="65" fill="#0F172A" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">Final Consensus</text>
+              <text x="590" y="105" fill="#059669" font-family="monospace" font-size="13" font-weight="bold" text-anchor="middle">Weighted Decision</text>
+              <text x="590" y="130" fill="#64748B" font-family="sans-serif" font-size="10" text-anchor="middle">Accurate trees get</text>
+              <text x="590" y="145" fill="#64748B" font-family="sans-serif" font-size="10" text-anchor="middle">louder voting power</text>
             </svg>
           </div>
           <div class="p-3.5 bg-slate-50 border-t border-slate-200 text-xs text-slate-600">
-            <strong>Figure 5:</strong> Misclassified instances receive higher weights at each stage, guiding later learners toward difficult cases.
+            <strong>Figure 5:</strong> Misclassified rows receive magnified attention in subsequent training rounds.
           </div>
         </div>
 
-        <p>
-          AdaBoost updates sample weights dynamically across training rounds:
-        </p>
-
-        <ol class="space-y-4 text-sm">
-          <li>
-            Calculate the weighted error rate for weak learner $h_m(\mathbf{x})$:
-            <div class="my-2 not-prose p-3 bg-slate-50 border border-slate-200 rounded-lg text-center overflow-x-auto">
-              $$\epsilon_m = \frac{\sum_{i: y_i \ne h_m(\mathbf{x}_i)} w_i^{(m)}}{\sum_{i=1}^n w_i^{(m)}}$$
-            </div>
-          </li>
-          <li>
-            Derive the model authority weight $\alpha_m$:
-            <div class="my-2 not-prose p-3 bg-slate-50 border border-slate-200 rounded-lg text-center overflow-x-auto">
-              $$\alpha_m = \frac{1}{2} \ln \left( \frac{1 - \epsilon_m}{\epsilon_m} \right)$$
-            </div>
-          </li>
-          <li>
-            Update sample weights:
-            <div class="my-2 not-prose p-3 bg-slate-50 border border-slate-200 rounded-lg text-center overflow-x-auto">
-              $$w_i^{(m+1)} = w_i^{(m)} \exp\left( -\alpha_m y_i h_m(\mathbf{x}_i) \right)$$
-            </div>
-          </li>
-        </ol>
-
-        <p>
-          Final predictions aggregate all weighted weak learners: $H(\mathbf{x}) = \text{sign}\left(\sum_{m=1}^M \alpha_m h_m(\mathbf{x})\right)$.
+        <p class="text-sm">
+          <strong>The Catch:</strong> Because AdaBoost zeroes in on its own mistakes, it is vulnerable to mislabeled rows or corrupted outliers. If you have noisy data, AdaBoost may obsess over unfixable records and damage its general performance.
         </p>
       </section>
 
       <!-- SECTION 7: XGBOOST -->
       <section id="xgboost" class="space-y-4 mb-20">
         <h2 class="text-3xl font-bold tracking-tight text-slate-950 font-display border-b border-slate-200 pb-3">
-          7. Extreme Gradient Boosting (XGBoost)
+          7. XGBoost: The Competitive Workhorse
         </h2>
+
+        <p class="text-sm font-semibold text-[#F25C05] uppercase tracking-wide font-mono">The Everyday Metaphor</p>
         <p>
-          Unlike AdaBoost's sample reweighting, <strong>Gradient Boosting</strong> trains trees directly on negative loss gradients (pseudo-residuals):
+          If AdaBoost adjusts weights based on whether an answer was right or wrong, <strong>XGBoost operates like an aerospace guidance system</strong>. It measures both the direction of the error and how steep the terrain is curving underneath it. It uses this measurement to take the shortest direct path to reduce error, while actively pruning away unnecessary branches to keep calculations fast.
         </p>
 
-        <div class="my-4 not-prose p-4 bg-slate-50 border border-slate-200 rounded-xl text-center text-sm font-mono overflow-x-auto">
-          $$r_{im} = -\left[ \frac{\partial \mathcal{L}(y_i, F(\mathbf{x}_i))}{\partial F(\mathbf{x}_i)} \right]_{F=F_{m-1}}$$
-        </div>
-
+        <p class="text-sm font-semibold text-[#F25C05] uppercase tracking-wide font-mono">Real-World Use Case</p>
         <p>
-          <strong>XGBoost</strong> builds on this framework through second-order optimization and structural regularization:
+          <strong>Credit Card Risk &amp; Kaggle Competitions:</strong> Predicting loan default risk across millions of rows containing missing fields, mixed data types, and skewed distributions. XGBoost delivers top-tier accuracy on tabular spreadsheets with minimal data cleanup required.
         </p>
 
-        <ul class="space-y-4 text-sm">
-          <li>
-            <strong>Second-Order Taylor Approximation:</strong> Leverages first-order gradients $g_i$ and second-order Hessians $h_i$:
-            <div class="my-2 not-prose p-3 bg-slate-50 border border-slate-200 rounded-lg text-center overflow-x-auto">
-              $$\tilde{\mathcal{L}}^{(t)} \approx \sum_{i=1}^n \left[ g_i f_t(\mathbf{x}_i) + \frac{1}{2} h_i f_t^2(\mathbf{x}_i) \right] + \Omega(f_t)$$
-            </div>
-          </li>
-          <li>
-            <strong>Explicit Regularization ($\Omega$):</strong> Directly limits tree complexity to prevent overfitting:
-            <div class="my-2 not-prose p-3 bg-slate-50 border border-slate-200 rounded-lg text-center overflow-x-auto">
-              $$\Omega(f_t) = \gamma T + \frac{1}{2} \lambda \sum_{j=1}^T w_j^2$$
-            </div>
-          </li>
-          <li><strong>Sparsity-Aware Routing:</strong> Learns default branch directions for missing data during split finding.</li>
-          <li><strong>Hardware Acceleration:</strong> Uses cache-aware block memory structures and compressed column formats for parallel execution.</li>
-        </ul>
+        <h3 class="text-lg font-bold text-slate-900 font-display pt-2">How It Works Step-by-Step</h3>
+        <ol class="space-y-2 text-sm pl-4 list-decimal">
+          <li><strong>Measure Slope &amp; Curve:</strong> For each prediction, compute both which direction you missed (the gradient) and how quickly the error is changing (the curvature).</li>
+          <li><strong>Calculate Exact Leaf Values:</strong> Use those measurements to solve directly for the exact prediction number that belongs on each leaf.</li>
+          <li><strong>Score New Splits by Quality Gain:</strong> Compare potential branches using an internal score threshold. If a branch doesn't deliver meaningful improvement, discard it immediately.</li>
+          <li><strong>Enforce Simplicity Penalties:</strong> Automatically penalize trees that grow too deep or carry large weights, preventing overgrowth.</li>
+          <li><strong>Handle Missing Values Automatically:</strong> When a value is missing, test routing it down the left branch versus the right branch, automatically keeping whichever direction yields lower error.</li>
+        </ol>
+
+        <p class="text-sm">
+          <strong>The Catch:</strong> XGBoost has dozens of adjustable settings (learning rate, tree depth, sample ratios, regularization penalties). Tuning them requires deliberate validation to avoid overfitting on small datasets.
+        </p>
       </section>
 
-      <!-- SECTION 8: META-ENSEMBLE VOTING & STACKING -->
+      <!-- SECTION 8: META-ENSEMBLES -->
       <section id="ensembles" class="space-y-4 mb-20">
         <h2 class="text-3xl font-bold tracking-tight text-slate-950 font-display border-b border-slate-200 pb-3">
-          8. Meta-Ensemble Voting &amp; Stacking
+          8. Stacking &amp; Voting: The Executive Panel
         </h2>
+
+        <p class="text-sm font-semibold text-[#F25C05] uppercase tracking-wide font-mono">The Everyday Metaphor</p>
         <p>
-          Meta-ensembles combine diverse algorithm families (linear, tree-based, and boosting models) to balance their individual inductive biases:
+          <strong>Voting (The Committee Poll):</strong> You hire an accountant (linear model), a field technician (decision tree), and a data analyst (XGBoost). You ask each of them for their forecast and average their answers.
         </p>
-        <ul class="space-y-3 text-sm">
-          <li><strong>Hard Voting:</strong> Takes the majority class prediction across base estimators.</li>
-          <li>
-            <strong>Soft Voting:</strong> Averages class probability outputs across well-calibrated classifiers:
-            <div class="my-2 not-prose p-3 bg-slate-50 border border-slate-200 rounded-lg text-center overflow-x-auto">
-              $$\hat{y} = \arg\max_k \sum_{m=1}^M w_m P_m(y=k \mid \mathbf{x})$$
-            </div>
-          </li>
-          <li><strong>Stacked Generalization (Stacking):</strong> Generates out-of-fold predictions to create a second-level feature matrix $\mathbf{Z} \in \mathbb{R}^{n \times M}$, which a meta-estimator (e.g., ElasticNet or Logistic Regression) uses to learn optimal blending weights.</li>
-        </ul>
+        <p>
+          <strong>Stacking (The Executive Referee):</strong> Instead of taking a simple average, you hire an executive manager (the meta-learner) whose only job is to evaluate the specialists. Over time, the manager learns: <em>"When market volatility is high, trust the technician. When numbers are steady, trust the accountant."</em>
+        </p>
+
+        <p class="text-sm font-semibold text-[#F25C05] uppercase tracking-wide font-mono">Real-World Use Case</p>
+        <p>
+          <strong>Real Estate Pricing Engines:</strong> A linear model captures broad interest-rate trends; an XGBoost model catches localized neighborhood features; a neural network parses property descriptions. A stacking model blends all three outputs to produce accurate valuation estimates.
+        </p>
+
+        <h3 class="text-lg font-bold text-slate-900 font-display pt-2">How Stacking Works Step-by-Step</h3>
+        <ol class="space-y-2 text-sm pl-4 list-decimal">
+          <li><strong>Pick Diverse Specialists:</strong> Train different types of models on your dataset (e.g., Logistic Regression, Random Forest, XGBoost).</li>
+          <li><strong>Generate Out-of-Fold Guesses:</strong> Use cross-validation so each model makes predictions on rows it did not train on, preventing inflated confidence scores.</li>
+          <li><strong>Build an Answer Table:</strong> Assemble those predictions into a new table where the columns are the models' outputs and the target is still the true answer.</li>
+          <li><strong>Train the Referee:</strong> Train a simple secondary model on this table to learn how to weight each specialist's recommendation.</li>
+          <li><strong>Run Predictions:</strong> On new data, pass inputs through all base models first, feed their predictions into the referee, and output the final blended verdict.</li>
+        </ol>
+
+        <p class="text-sm">
+          <strong>The Catch:</strong> High operational complexity. Maintaining, retraining, and debugging a three-layer stacked pipeline in production requires significantly more engineering effort than serving a single model.
+        </p>
       </section>
 
-      <!-- SECTION 9: CONVOLUTIONAL NEURAL NETWORKS (CNN) -->
+      <!-- SECTION 9: CNN -->
       <section id="cnn" class="space-y-4 mb-20">
         <h2 class="text-3xl font-bold tracking-tight text-slate-950 font-display border-b border-slate-200 pb-3">
-          9. Convolutional Neural Networks (CNN)
+          9. Convolutional Neural Networks (CNN): Teaching Computers to See
         </h2>
 
+        <p class="text-sm font-semibold text-[#F25C05] uppercase tracking-wide font-mono">The Everyday Metaphor</p>
+        <p>
+          Traditional machine learning models view data like an Excel spreadsheet where columns can be rearranged without breaking the logic. But if you scramble the pixels of a photograph, humans cannot recognize the image either.
+        </p>
+        <p>
+          A CNN works like an art inspector holding a <strong>magnifying glass (filter)</strong> that slides across the canvas. It first scans for simple brushstrokes (edges, diagonals, color boundaries). As you pull back, it groups strokes into textures and shapes (circles, corners), then into parts (eyes, wheels), and finally into full objects (faces, cars).
+        </p>
+
+        <p class="text-sm font-semibold text-[#F25C05] uppercase tracking-wide font-mono">Real-World Use Case</p>
+        <p>
+          <strong>Medical Imaging &amp; Factory Inspection:</strong> Identifying micro-fractures in industrial turbine blades on factory lines, or scanning chest X-rays to flag signs of pneumonia before a radiologist reviews the file.
+        </p>
+
+        <h3 class="text-lg font-bold text-slate-900 font-display pt-2">How It Works Step-by-Step</h3>
+        <ol class="space-y-2 text-sm pl-4 list-decimal">
+          <li><strong>Slide Moving Filters (Convolution):</strong> Move small filter matrices across the pixel grid, calculating local matches to generate feature maps highlighting edges, diagonals, and corners.</li>
+          <li><strong>Filter Out Inactive Signals:</strong> Pass numbers through a zero-floor threshold (ReLU), clearing out negative numbers so the network focuses only on detected patterns.</li>
+          <li><strong>Downsample to Keep the Highlights (Pooling):</strong> Slide a window across the feature map, keeping only the highest activation in each square. This shrinks image size while making detection robust to small shifts.</li>
+          <li><strong>Build Visual Hierarchies:</strong> Stack multiple filter-and-pool layers so early layers see lines, middle layers spot shapes, and deep layers recognize full objects.</li>
+          <li><strong>Output Probabilities:</strong> Flatten the final high-level features into a classification layer that delivers percentage likelihoods (e.g., 96% Defective, 4% Normal).</li>
+        </ol>
+
+        <!-- Figure 6 SVG -->
         <div class="my-6 bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm not-prose">
           <div class="p-3 bg-slate-100 border-b border-slate-200 flex items-center justify-between text-xs font-mono text-slate-600">
             <span class="flex items-center gap-2">
               <span class="w-2.5 h-2.5 rounded-full bg-red-400"></span>
               <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
               <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
-              <span class="font-bold text-slate-800 ml-2">Figure 6: Convolution, Pooling, and Dense Classification Stages</span>
+              <span class="font-bold text-slate-800 ml-2">Figure 6: Finding Lines, Building Shapes, and Classifying Images</span>
             </span>
-            <span class="text-slate-500 font-semibold">Deep Vision</span>
+            <span class="text-slate-500 font-semibold">Vision Pipeline</span>
           </div>
           <div class="p-6 bg-[#F8F9FA] flex justify-center">
             <svg viewBox="0 0 700 240" class="w-full max-w-2xl h-auto" xmlns="http://www.w3.org/2000/svg">
               <rect x="20" y="60" width="80" height="80" rx="4" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5"/>
-              <text x="60" y="105" fill="#0F172A" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="middle">Input Tensor</text>
-              <text x="60" y="120" fill="#64748B" font-family="monospace" font-size="9" text-anchor="middle">H × W × C</text>
+              <text x="60" y="105" fill="#0F172A" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="middle">Input Photo</text>
+              <text x="60" y="120" fill="#64748B" font-family="monospace" font-size="9" text-anchor="middle">Pixels</text>
 
               <line x1="105" y1="100" x2="140" y2="100" stroke="#F25C05" stroke-width="1.5"/>
 
               <rect x="145" y="45" width="70" height="110" rx="4" fill="#FFFFFF" stroke="#0284C7" stroke-width="1.5"/>
-              <text x="180" y="95" fill="#0284C7" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="middle">Conv 2D</text>
-              <text x="180" y="110" fill="#0F172A" font-family="monospace" font-size="9" text-anchor="middle">+ ReLU</text>
+              <text x="180" y="95" fill="#0284C7" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="middle">Filters</text>
+              <text x="180" y="110" fill="#0F172A" font-family="monospace" font-size="9" text-anchor="middle">Finds Lines</text>
 
               <line x1="220" y1="100" x2="255" y2="100" stroke="#F25C05" stroke-width="1.5"/>
 
               <rect x="260" y="65" width="55" height="70" rx="4" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5"/>
-              <text x="287" y="100" fill="#059669" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle">Max Pool</text>
-              <text x="287" y="115" fill="#64748B" font-family="monospace" font-size="8" text-anchor="middle">2×2, s=2</text>
+              <text x="287" y="100" fill="#059669" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle">Shrink</text>
+              <text x="287" y="115" fill="#64748B" font-family="monospace" font-size="8" text-anchor="middle">Pooling</text>
 
               <line x1="320" y1="100" x2="355" y2="100" stroke="#F25C05" stroke-width="1.5"/>
 
               <rect x="360" y="55" width="60" height="90" rx="4" fill="#FFFFFF" stroke="#0284C7" stroke-width="1.5"/>
-              <text x="390" y="100" fill="#0284C7" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle">Conv 2D</text>
-              <text x="390" y="115" fill="#0F172A" font-family="monospace" font-size="8" text-anchor="middle">+ ReLU</text>
+              <text x="390" y="100" fill="#0284C7" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle">Deep Filters</text>
+              <text x="390" y="115" fill="#0F172A" font-family="monospace" font-size="8" text-anchor="middle">Full Shapes</text>
 
               <line x1="425" y1="100" x2="460" y2="100" stroke="#F25C05" stroke-width="1.5"/>
 
               <rect x="465" y="30" width="20" height="140" rx="3" fill="#F3E8FF" stroke="#A855F7" stroke-width="1.5"/>
-              <text x="475" y="185" fill="#7E22CE" font-family="sans-serif" font-size="9" text-anchor="middle">Flatten</text>
+              <text x="475" y="185" fill="#7E22CE" font-family="sans-serif" font-size="9" text-anchor="middle">Unroll</text>
 
               <line x1="490" y1="100" x2="525" y2="100" stroke="#F25C05" stroke-width="1.5"/>
 
               <rect x="530" y="45" width="40" height="110" rx="4" fill="#FFF7ED" stroke="#F25C05" stroke-width="1.5"/>
-              <text x="550" y="105" fill="#C2410C" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle">FC</text>
+              <text x="550" y="105" fill="#C2410C" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle">Score</text>
 
               <line x1="575" y1="100" x2="605" y2="100" stroke="#F25C05" stroke-width="1.5"/>
               <rect x="610" y="70" width="70" height="60" rx="4" fill="#ECFDF5" stroke="#10B981" stroke-width="1.5"/>
-              <text x="645" y="98" fill="#065F46" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle">Softmax</text>
-              <text x="645" y="112" fill="#047857" font-family="monospace" font-size="8" text-anchor="middle">Classes</text>
+              <text x="645" y="98" fill="#065F46" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle">Output</text>
+              <text x="645" y="112" fill="#047857" font-family="monospace" font-size="8" text-anchor="middle">Probabilities</text>
             </svg>
           </div>
           <div class="p-3.5 bg-slate-50 border-t border-slate-200 text-xs text-slate-600">
-            <strong>Figure 6:</strong> Feature extraction through convolution and pooling layers, followed by dense layers for class assignment.
+            <strong>Figure 6:</strong> Sliding localized filters, shrinking image dimensions, and building up to final object classifications.
           </div>
         </div>
 
-        <p>
-          Unlike tabular models that treat inputs as flat vectors, <strong>CNNs</strong> preserve spatial relationships in multi-dimensional grid data (such as image tensors) through localized operations:
+        <p class="text-sm">
+          <strong>The Catch:</strong> High computational appetite. Training deep convolutional networks requires thousands of labeled images and specialized GPU hardware.
         </p>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-6 not-prose">
-          <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-2">
-            <h4 class="font-bold text-[#F25C05] text-xs font-mono uppercase">1. Discrete 2D Convolution</h4>
-            <p class="text-xs text-slate-600">
-              Slides learnable filter kernels across spatial dimensions to detect shift-invariant patterns:
-            </p>
-            <div class="p-2 bg-white border border-slate-200 rounded text-center text-[11px] overflow-x-auto">
-              $$(I * K)(i, j) = \sum_{m} \sum_{n} I(i - m, j - n) K(m, n)$$
-            </div>
-          </div>
-          <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-2">
-            <h4 class="font-bold text-[#F25C05] text-xs font-mono uppercase">2. Spatial Pooling</h4>
-            <p class="text-xs text-slate-600">
-              Reduces spatial resolution while preserving dominant activations:
-            </p>
-            <div class="p-2 bg-white border border-slate-200 rounded text-center text-[11px] overflow-x-auto">
-              $$P(i, j) = \max_{m, n} A(i \cdot s + m, j \cdot s + n)$$
-            </div>
-          </div>
-          <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-2">
-            <h4 class="font-bold text-[#F25C05] text-xs font-mono uppercase">3. Dense Classification</h4>
-            <p class="text-xs text-slate-600">
-              Normalizes outputs into class probabilities via Softmax:
-            </p>
-            <div class="p-2 bg-white border border-slate-200 rounded text-center text-[11px] overflow-x-auto">
-              $$P(y = c \mid \mathbf{x}) = \frac{e^{z_c}}{\sum_{k} e^{z_k}}$$
-            </div>
-          </div>
-        </div>
       </section>
 
-      <!-- SECTION 10: UNSUPERVISED CLUSTERING (K-MEANS) -->
+      <!-- SECTION 10: K-MEANS CLUSTERING -->
       <section id="kmeans" class="space-y-4 mb-20">
         <h2 class="text-3xl font-bold tracking-tight text-slate-950 font-display border-b border-slate-200 pb-3">
-          10. Unsupervised Clustering: $k$-Means &amp; Centroid Partitioning
+          10. k-Means Clustering: Finding Tribes Without an Answer Key
         </h2>
 
+        <p class="text-sm font-semibold text-[#F25C05] uppercase tracking-wide font-mono">The Everyday Metaphor</p>
+        <p>
+          Imagine 500 conference attendees standing scattered across an auditorium floor without name tags or assigned tables. You drop <strong>3 colored flags</strong> at random locations on the floor and announce: <em>"Everyone walk over to whichever flag is closest to you."</em>
+        </p>
+        <p>
+          Once crowds gather, you tell each flag-bearer to walk to the exact dead-center of their crowd. Because the flags moved, some people on the edges realize another flag is now closer, so they switch groups. You repeat this adjustment until the flags stop shifting. You just discovered three natural cohorts without knowing anyone's job title in advance.
+        </p>
+
+        <p class="text-sm font-semibold text-[#F25C05] uppercase tracking-wide font-mono">Real-World Use Case</p>
+        <p>
+          <strong>Retail Customer Segmentation:</strong> Grouping 100,000 loyalty program shoppers based on purchase frequency, average basket size, and discount usage. The business uses the resulting clusters to tailor marketing campaigns: <em>"Bargain Hunters," "VIP Regulars,"</em> and <em>"Occasional Splurgers."</em>
+        </p>
+
+        <h3 class="text-lg font-bold text-slate-900 font-display pt-2">How It Works Step-by-Step</h3>
+        <ol class="space-y-2 text-sm pl-4 list-decimal">
+          <li><strong>Standardize the Ruler:</strong> Rescale all metrics to identical ranges. If Income is in the $100,000s and Visits per Month is between 1 and 4, income will dominate distance calculations unless standardized.</li>
+          <li><strong>Drop Center Pins:</strong> Place $k$ starting center pins into the data space (spaced out cleanly using smart seeding).</li>
+          <li><strong>Assign to the Nearest Pin:</strong> Measure the distance from every customer point to all pins, assigning each customer to their closest pin.</li>
+          <li><strong>Move the Pin to the Center:</strong> Calculate the average position of all customers in that group, and slide the center pin to that new average.</li>
+          <li><strong>Repeat Until Settled:</strong> Reassign customers and update pin locations until assignments stop changing.</li>
+        </ol>
+
+        <!-- Figure 7 SVG -->
         <div class="my-6 bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm not-prose">
           <div class="p-3 bg-slate-100 border-b border-slate-200 flex items-center justify-between text-xs font-mono text-slate-600">
             <span class="flex items-center gap-2">
               <span class="w-2.5 h-2.5 rounded-full bg-red-400"></span>
               <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
               <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
-              <span class="font-bold text-slate-800 ml-2">Figure 7: k-Means Centroid Convergence &amp; Voronoi Cell Partitions</span>
+              <span class="font-bold text-slate-800 ml-2">Figure 7: Centroid Drift &amp; Natural Customer Neighborhoods</span>
             </span>
-            <span class="text-slate-500 font-semibold">Unsupervised Geometry</span>
+            <span class="text-slate-500 font-semibold">Unsupervised Discovery</span>
           </div>
           <div class="p-6 bg-[#F8F9FA] flex justify-center">
             <svg viewBox="0 0 700 260" class="w-full max-w-2xl h-auto" xmlns="http://www.w3.org/2000/svg">
@@ -728,7 +743,7 @@
                 <circle cx="130" cy="115" r="12" fill="none" stroke="#0284C7" stroke-width="2.5" />
                 <line x1="114" y1="115" x2="146" y2="115" stroke="#0284C7" stroke-width="2.5" />
                 <line x1="130" y1="99" x2="130" y2="131" stroke="#0284C7" stroke-width="2.5" />
-                <text x="130" y="145" fill="#0284C7" font-family="monospace" font-size="11" font-weight="bold" text-anchor="middle">μ₁ (Centroid 1)</text>
+                <text x="130" y="145" fill="#0284C7" font-family="monospace" font-size="11" font-weight="bold" text-anchor="middle">Group 1 Center</text>
               </g>
 
               <g>
@@ -744,7 +759,7 @@
                 <circle cx="450" cy="65" r="12" fill="none" stroke="#059669" stroke-width="2.5" />
                 <line x1="434" y1="65" x2="466" y2="65" stroke="#059669" stroke-width="2.5" />
                 <line x1="450" y1="49" x2="450" y2="81" stroke="#059669" stroke-width="2.5" />
-                <text x="450" y="28" fill="#059669" font-family="monospace" font-size="11" font-weight="bold" text-anchor="middle">μ₂ (Centroid 2)</text>
+                <text x="450" y="28" fill="#059669" font-family="monospace" font-size="11" font-weight="bold" text-anchor="middle">Group 2 Center</text>
               </g>
 
               <g>
@@ -760,146 +775,87 @@
                 <circle cx="480" cy="185" r="12" fill="none" stroke="#F25C05" stroke-width="2.5" />
                 <line x1="464" y1="185" x2="496" y2="185" stroke="#F25C05" stroke-width="2.5" />
                 <line x1="480" y1="169" x2="480" y2="201" stroke="#F25C05" stroke-width="2.5" />
-                <text x="480" y="215" fill="#F25C05" font-family="monospace" font-size="11" font-weight="bold" text-anchor="middle">μ₃ (Centroid 3)</text>
+                <text x="480" y="215" fill="#F25C05" font-family="monospace" font-size="11" font-weight="bold" text-anchor="middle">Group 3 Center</text>
               </g>
 
-              <text x="50" y="225" fill="#64748B" font-family="monospace" font-size="10">Dashed lines = Voronoi cell boundaries</text>
+              <text x="50" y="225" fill="#64748B" font-family="monospace" font-size="10">Dashed Lines = Cluster Boundaries</text>
             </svg>
           </div>
           <div class="p-3.5 bg-slate-50 border-t border-slate-200 text-xs text-slate-600">
-            <strong>Figure 7:</strong> Partitioning $N$ unlabeled instances into $k=3$ clusters by minimizing distances to cluster centroids $\boldsymbol{\mu}_k$.
+            <strong>Figure 7:</strong> Partitioning unlabeled records by sliding cluster pins directly to the center of their assigned groups.
           </div>
         </div>
 
-        <p>
-          Unlike the supervised models covered previously, <strong>$k$-Means Clustering</strong> operates on unlabeled data $\{\mathbf{x}_i\}_{i=1}^n$, discovering natural clusters by partitioning points into $k$ distinct Voronoi cells.
+        <p class="text-sm">
+          <strong>The Catch:</strong> The algorithm forces every data point into a cluster even if it's an extreme anomaly that doesn't belong anywhere. You also have to choose how many clusters ($k$) you want in advance.
         </p>
-
-        <h3 class="text-xl font-bold text-slate-900 font-display pt-2">The Mathematical Objective: Inertia Minimization</h3>
-        <p>
-          The algorithm finds centroids $\{\boldsymbol{\mu}_1, \dots, \boldsymbol{\mu}_k\}$ that minimize the Within-Cluster Sum of Squares (WCSS):
-        </p>
-
-        <div class="my-4 not-prose p-4 bg-slate-50 border border-slate-200 rounded-xl text-center text-sm font-mono overflow-x-auto">
-          $$\mathcal{J}(C, \boldsymbol{\mu}) = \sum_{j=1}^k \sum_{\mathbf{x}_i \in S_j} \|\mathbf{x}_i - \boldsymbol{\mu}_j\|_2^2$$
-        </div>
-
-        <p>
-          Lloyd's algorithm alternates between two steps until centroid positions stabilize:
-        </p>
-
-        <ol class="space-y-3 text-sm">
-          <li>
-            <strong>Assignment Step:</strong> Assign each point $\mathbf{x}_i$ to its nearest Euclidean centroid:
-            <div class="my-2 not-prose p-3 bg-slate-50 border border-slate-200 rounded-lg text-center overflow-x-auto">
-              $$S_j^{(t)} = \left\{ \mathbf{x}_i : \|\mathbf{x}_i - \boldsymbol{\mu}_j^{(t)}\|_2^2 \le \|\mathbf{x}_i - \boldsymbol{\mu}_l^{(t)}\|_2^2 \quad \forall l \right\}$$
-            </div>
-          </li>
-          <li>
-            <strong>Update Step:</strong> Recalculate centroids as the mean of their assigned points:
-            <div class="my-2 not-prose p-3 bg-slate-50 border border-slate-200 rounded-lg text-center overflow-x-auto">
-              $$\boldsymbol{\mu}_j^{(t+1)} = \frac{1}{|S_j^{(t)}|} \sum_{\mathbf{x}_i \in S_j^{(t)}} \mathbf{x}_i$$
-            </div>
-          </li>
-        </ol>
-
-        <h3 class="text-xl font-bold text-slate-900 font-display pt-2">Selecting Optimal $k$ (Elbow vs. Silhouette)</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-4 not-prose">
-          <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-2">
-            <h4 class="font-bold text-[#F25C05] text-xs font-mono uppercase">1. The Elbow Method</h4>
-            <p class="text-xs text-slate-600">
-              Identifies the inflection point where additional clusters yield diminishing returns in explained variance (WCSS).
-            </p>
-          </div>
-          <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-2">
-            <h4 class="font-bold text-[#F25C05] text-xs font-mono uppercase">2. Silhouette Analysis</h4>
-            <p class="text-xs text-slate-600">
-              Measures cohesion against nearest neighbor separation for each point:
-            </p>
-            <div class="p-2 bg-white border border-slate-200 rounded text-center text-[11px] overflow-x-auto">
-              $$s(i) = \frac{b(i) - a(i)}{\max(a(i), b(i))}, \quad s(i) \in [-1, 1]$$
-            </div>
-          </div>
-        </div>
-
-        <div class="p-4 bg-orange-50 border border-orange-200 rounded-xl text-xs text-slate-700 leading-relaxed not-prose">
-          <strong>Scaling Requirement:</strong> Because $k$-Means computes isotropic Euclidean distances, features with large scales dominate smaller-scale dimensions. Features must be standardized (zero mean, unit variance) before computing distances.
-        </div>
       </section>
 
-      <!-- SECTION 11: COMPARATIVE REFERENCE MATRIX -->
+      <!-- SECTION 11: CHEAT SHEET TABLE -->
       <section id="comparison" class="space-y-4 mb-16">
         <h2 class="text-3xl font-bold tracking-tight text-slate-950 font-display border-b border-slate-200 pb-3">
-          11. Architecture Reference Matrix
+          11. Decision Cheat-Sheet: Which Tool for Which Problem?
         </h2>
         <div class="overflow-x-auto my-6 not-prose">
           <table class="w-full text-left text-xs border-collapse bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
             <thead class="bg-slate-100 text-slate-800 font-semibold border-b border-slate-200 uppercase tracking-wider font-mono">
               <tr>
-                <th class="p-3.5">Architecture</th>
-                <th class="p-3.5">Learning Paradigm</th>
-                <th class="p-3.5">Data Domain</th>
+                <th class="p-3.5">Algorithm</th>
+                <th class="p-3.5">The Business Job</th>
                 <th class="p-3.5">Key Advantage</th>
-                <th class="p-3.5">Primary Limitation</th>
-                <th class="p-3.5">Computational Complexity</th>
+                <th class="p-3.5">Where It Struggles</th>
+                <th class="p-3.5">Real-World Pick</th>
               </tr>
             </thead>
             <tbody class="divide-y divide-slate-100 text-slate-700">
               <tr>
                 <td class="p-3.5 font-bold text-slate-900">Linear Regression</td>
-                <td class="p-3.5 font-mono text-slate-500">Supervised</td>
-                <td class="p-3.5">Continuous Numeric</td>
-                <td class="p-3.5">Direct analytical solution; explicit unit coefficient interpretation</td>
-                <td class="p-3.5">Assumes strict linearity and homoscedasticity</td>
-                <td class="p-3.5 text-emerald-700 font-mono font-semibold">$\mathcal{O}(p)$</td>
+                <td class="p-3.5">Predicting a specific continuous number</td>
+                <td class="p-3.5">Instant results; clear per-unit impact for each feature</td>
+                <td class="p-3.5">Assumes relationships are straight lines</td>
+                <td class="p-3.5 text-slate-600">Home value appraisal, revenue forecasting</td>
               </tr>
               <tr>
                 <td class="p-3.5 font-bold text-slate-900">Logistic Regression</td>
-                <td class="p-3.5 font-mono text-slate-500">Supervised</td>
-                <td class="p-3.5">Binary / Categorical</td>
-                <td class="p-3.5">Outputs calibrated probabilities; log-odds interpretation</td>
-                <td class="p-3.5">Linear decision boundary in logit space</td>
-                <td class="p-3.5 text-emerald-700 font-mono font-semibold">$\mathcal{O}(p)$</td>
+                <td class="p-3.5">Predicting a yes/no probability</td>
+                <td class="p-3.5">Outputs calibrated percentages between 0% and 100%</td>
+                <td class="p-3.5">Assumes a flat division between classes</td>
+                <td class="p-3.5 text-slate-600">Credit card fraud, customer churn</td>
               </tr>
               <tr>
                 <td class="p-3.5 font-bold text-slate-900">Decision Tree</td>
-                <td class="p-3.5 font-mono text-slate-500">Supervised</td>
-                <td class="p-3.5">Tabular Non-linear</td>
-                <td class="p-3.5">Interpretable rules; invariant to monotonic feature scaling</td>
-                <td class="p-3.5">High variance; prone to overfitting without pruning</td>
-                <td class="p-3.5 text-emerald-700 font-mono font-semibold">$\mathcal{O}(\text{depth})$</td>
+                <td class="p-3.5">Transparent flowchart rules</td>
+                <td class="p-3.5">Easy to explain; handles mixed numbers and text</td>
+                <td class="p-3.5">Overfits and memorizes noise easily</td>
+                <td class="p-3.5 text-slate-600">Regulated credit decisions, triage rules</td>
               </tr>
               <tr>
                 <td class="p-3.5 font-bold text-slate-900">Random Forest</td>
-                <td class="p-3.5 font-mono text-slate-500">Supervised</td>
-                <td class="p-3.5">Tabular General</td>
-                <td class="p-3.5">Robust to noisy outliers; minimal hyperparameter tuning required</td>
-                <td class="p-3.5">High memory use; slow prediction on large tree sets</td>
-                <td class="p-3.5 text-amber-700 font-mono font-semibold">$\mathcal{O}(B \times \text{depth})$</td>
+                <td class="p-3.5">Reliable general prediction on tables</td>
+                <td class="p-3.5">High accuracy out-of-the-box; rarely overfits</td>
+                <td class="p-3.5">Large file sizes; slower on real-time lookups</td>
+                <td class="p-3.5 text-slate-600">Employee attrition, insurance claim fraud</td>
               </tr>
               <tr>
                 <td class="p-3.5 font-bold text-[#F25C05]">XGBoost</td>
-                <td class="p-3.5 font-mono text-slate-500">Supervised</td>
-                <td class="p-3.5">Tabular Benchmark</td>
-                <td class="p-3.5">Top-tier accuracy on tabular data; native handling of missing values</td>
-                <td class="p-3.5">Sensitive to hyperparameter search configurations</td>
-                <td class="p-3.5 text-amber-700 font-mono font-semibold">$\mathcal{O}(M \times \text{depth})$</td>
+                <td class="p-3.5">High-performance competition predictions</td>
+                <td class="p-3.5">Top-tier accuracy on tables; handles missing fields</td>
+                <td class="p-3.5">Requires hyperparameter tuning to avoid overfitting</td>
+                <td class="p-3.5 text-slate-600">Ad click prediction, algorithmic trading</td>
               </tr>
               <tr>
                 <td class="p-3.5 font-bold text-slate-900">CNN</td>
-                <td class="p-3.5 font-mono text-slate-500">Supervised</td>
-                <td class="p-3.5">Spatial / Image Grids</td>
-                <td class="p-3.5">Automated spatial feature representation via shared filters</td>
-                <td class="p-3.5">Requires large sample sizes and dedicated GPU acceleration</td>
-                <td class="p-3.5 text-red-700 font-mono font-semibold">High FLOP Count</td>
+                <td class="p-3.5">Image, video &amp; visual recognition</td>
+                <td class="p-3.5">Understands spatial shapes without manual feature prep</td>
+                <td class="p-3.5">Requires massive image sets and GPU hardware</td>
+                <td class="p-3.5 text-slate-600">Factory defect detection, medical scans</td>
               </tr>
               <tr class="bg-orange-50/40">
-                <td class="p-3.5 font-bold text-[#F25C05]">$k$-Means Clustering</td>
-                <td class="p-3.5 font-mono text-slate-500">Unsupervised</td>
-                <td class="p-3.5">Continuous Tabular</td>
-                <td class="p-3.5">Fast geometric convergence; groups unlabeled datasets naturally</td>
-                <td class="p-3.5">Assumes spherical clusters; sensitive to outliers and scaling</td>
-                <td class="p-3.5 text-emerald-700 font-mono font-semibold">$\mathcal{O}(N \cdot k \cdot I \cdot p)$</td>
+                <td class="p-3.5 font-bold text-[#F25C05]">k-Means Clustering</td>
+                <td class="p-3.5">Segmenting customer bases with no labels</td>
+                <td class="p-3.5">Discovers natural cohorts in raw unlabelled data</td>
+                <td class="p-3.5">Corrupted if features are not scaled; assumes round clusters</td>
+                <td class="p-3.5 text-slate-600">Targeted marketing, store location planning</td>
               </tr>
             </tbody>
           </table>
